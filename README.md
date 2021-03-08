@@ -1,7 +1,7 @@
 # diagnosticls-nvim (Status: Experimental)
 
 A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
-Have a look at the currently [supported linters/formatters][#supported-linters-and-formatters] below.
+Have a look at the currently [supported linters/formatters](#supported-linters-and-formatters) below.
 
 ## Installation
 ### Requirements
