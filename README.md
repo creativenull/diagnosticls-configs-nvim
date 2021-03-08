@@ -1,16 +1,17 @@
-# DiagnosticLS-nvim (Status: Experimental)
+# diagnosticls-nvim (Status: Experimental)
 
-A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp]
+A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
+Have a look at the currently [supported linters/formatters][#supported-linters-and-formatters] below.
 
 ## Installation
 ### Requirements
 
++ Neovim v0.5
 + DiagnosticLS, globally installed: `npm i -g diagnostic-languageserver`
-+ nvim-lspconfig
++ `nvim-lspconfig`
 
-### Install w/ Packer.nvim example
-
-You will need to install `nvim-lspconfig` before using this plugin. Using [packer.nvim][packer] as an example:
+You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin. Using
+[packer.nvim][packer] as an example:
 
 ```lua
 use {
@@ -49,6 +50,18 @@ require'diagnosticls-nvim'.setup {
   }
 }
 ```
+
+## Supported linters and formatters
+
+### Linters
+
++ `eslint`
++ `xo`
+
+### Formatters
+
++ `prettier`
++ `xo_fmt`
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [lsp]: https://neovim.io/doc/user/lsp.html
