@@ -56,11 +56,17 @@ require'diagnosticls-nvim'.setup {
 ### Linters
 
 + `eslint`
++ `standard`
++ `ts_standard`
 + `xo`
 
 ### Formatters
 
++ `prettier_eslint`
++ `prettier_standard`
 + `prettier`
++ `standard_fmt`
++ `ts_standard_fmt`
 + `xo_fmt`
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
