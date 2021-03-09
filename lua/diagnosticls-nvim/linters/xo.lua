@@ -1,6 +1,8 @@
+local fs = require 'diagnosticls-nvim.fs'
+
 return {
   sourceName = 'xo',
-  command = 'xo',
+  command = fs.get_executable('xo', 'node'),
   debounce = 100,
   args = {  '--stdin', '--stdin-filename', '%filepath', '--reporter', 'json' },
   parseJson = {
@@ -14,10 +16,10 @@ return {
   },
   securities = {
     [2] = 'error',
-    [1] = 'warning'
+    [1] = 'warning',
   },
   rootPatterns = {
     '.git',
-    '.eslintignore'
-  }
+    '.eslintignore',
+  },
 }

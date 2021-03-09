@@ -1,6 +1,8 @@
+local fs = require 'diagnosticls-nvim.fs'
+
 return {
   sourceName = 'eslint',
-  command = 'eslint',
+  command = fs.get_executable('eslint', 'node'),
   debounce = 100,
   args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
   parseJson = {
@@ -9,12 +11,12 @@ return {
     column = 'column',
     endLine = 'endLine',
     endColumn = 'endColumn',
-    message = '${message} [${ruleId}]',
-    security = 'severity'
+    message = '${message} [${ruleId}] [eslint]',
+    security = 'severity',
   },
   securities = {
     [2] = 'error',
-    [1] = 'warning'
+    [1] = 'warning',
   },
   rootPatterns = {
     '.eslintrc',
@@ -22,6 +24,6 @@ return {
     '.eslintrc.js',
     '.eslintrc.json',
     '.eslintrc.yaml',
-    '.eslintrc.yml'
-  }
+    '.eslintrc.yml',
+  },
 }
