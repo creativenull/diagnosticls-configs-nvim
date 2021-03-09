@@ -1,5 +1,7 @@
+local fs = require 'diagnosticls-nvim.fs'
+
 return {
-  command = 'prettier',
+  command = fs.get_executable('prettier', 'node'),
   args = { '--stdin', '--stdin-filepath', '%filepath' },
   rootPatterns = {
     '.prettierrc',
@@ -12,6 +14,6 @@ return {
     '.prettierrc.js',
     '.prettierrc.cjs',
     'prettier.config.js',
-    'prettier.config.cjs'
-  }
+    'prettier.config.cjs',
+  },
 }
