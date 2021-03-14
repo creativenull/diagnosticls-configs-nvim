@@ -56,8 +56,19 @@ require'diagnosticls-nvim'.setup {
 ### Linters
 
 + `eslint`
++ `flake`
++ `golangci_lint`
++ `phpcs`
++ `phpstan`
++ `psalm`
++ `pylint`
++ `reek`
++ `revive`
++ `rubocop`
 + `standard`
++ `stylelint`
 + `ts_standard`
++ `vint`
 + `xo`
 
 ### Formatters
