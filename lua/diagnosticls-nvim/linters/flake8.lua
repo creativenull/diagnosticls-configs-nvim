@@ -18,10 +18,10 @@ return {
     },
   },
   securities = {
-    W = warning,
-    E = error,
-    F = error,
-    C = error,
-    N = error,
+    W = 'warning',
+    E = 'error',
+    F = 'error',
+    C = 'error',
+    N = 'error',
   },
 }
