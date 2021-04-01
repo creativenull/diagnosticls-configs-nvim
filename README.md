@@ -4,6 +4,7 @@ A collection of linters and formatters configured for [diagnostic language serve
 Have a look at the currently [supported linters/formatters](#supported-linters-and-formatters) below.
 
 ## Installation
+
 ### Requirements
 
 + Neovim v0.5
@@ -29,9 +30,8 @@ local function on_attach(client)
   print('Attached to ' .. client.name)
 end
 
-require'diagnosticls-nvim'.init {
-  on_attach = on_attach, -- Custom attach function
-  root_dir = require'lspconfig'.util.root_pattern('.git')
+require 'diagnosticls-nvim'.init {
+  on_attach = on_attach -- Your custom attach function
 }
 ```
 
@@ -39,14 +39,16 @@ Finally, setup the linters/formatters according to the filetype, here is an exam
 for `javascript` and `javascriptreact` filetype:
 
 ```lua
-require'diagnosticls-nvim'.setup {
-  javascript = {
-    linter = 'eslint',
-    formatter = 'prettier'
+local eslint = require 'diagnosticls-nvim.linters.eslint'
+local prettier = require 'diagnosticls-nvim.formatters.prettier'
+require 'diagnosticls-nvim'.setup {
+  ['javascript'] = {
+    linter = eslint,
+    formatter = prettier
   },
-  javascriptreact = {
-    linter = 'eslint',
-    formatter = 'prettier'
+  ['javascriptreact'] = {
+    linter = eslint,
+    formatter = prettier
   }
 }
 ```
