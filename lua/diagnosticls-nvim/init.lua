@@ -5,10 +5,16 @@ local diagnosticls_nvim_lsp_opts = {
   root_dir = require 'lspconfig'.util.root_pattern('.git')
 }
 
+-- Initialize lsp options to pass thru diagnosticls
+-- @param lsp_opts table
+-- @return void
 M.init = function(lsp_opts)
-  diagnosticls_nvim_lsp_opts = lsp_opts
+  vim.tbl_extend('force', diagnosticls_nvim_lsp_opts, lsp_opts)
 end
 
+-- Setup the linter and/or formatter based on the filetype
+-- @param opts table
+-- @return void
 M.setup = function(opts)
   local filetypes = {}
   local lsp_opts = diagnosticls_nvim_lsp_opts

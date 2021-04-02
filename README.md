@@ -55,32 +55,35 @@ require 'diagnosticls-nvim'.setup {
 
 ## Supported linters and formatters
 
+Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
+`require` code into your `setup()` function shown above.
+
 ### Linters
 
-+ `eslint`
-+ `flake`
-+ `golangci_lint`
-+ `phpcs`
-+ `phpstan`
-+ `psalm`
-+ `pylint`
-+ `reek`
-+ `revive`
-+ `rubocop`
-+ `standard`
-+ `stylelint`
-+ `ts_standard`
-+ `vint`
-+ `xo`
++ `eslint` => `require 'diagnosticls-nvim.linters.eslint'`
++ `flake` => `require 'diagnosticls-nvim.linters.flake'`
++ `golangci_lint` => `require 'diagnosticls-nvim.linters.golangci_lint'`
++ `phpcs` => `require 'diagnosticls-nvim.linters.phpcs'`
++ `phpstan` => `require 'diagnosticls-nvim.linters.phpstan'`
++ `psalm` => `require 'diagnosticls-nvim.linters.psalm'`
++ `pylint` => `require 'diagnosticls-nvim.linters.pylint'`
++ `reek` => `require 'diagnosticls-nvim.linters.reek'`
++ `revive` => `require 'diagnosticls-nvim.linters.revive'`
++ `rubocop` => `require 'diagnosticls-nvim.linters.rubocop'`
++ `standard` => `require 'diagnosticls-nvim.linters.standard'`
++ `stylelint` => `require 'diagnosticls-nvim.linters.stylelint'`
++ `ts_standard` => `require 'diagnosticls-nvim.linters.ts_standard'`
++ `vint` => `require 'diagnosticls-nvim.linters.vint'`
++ `xo` => `require 'diagnosticls-nvim.linters.xo'`
 
 ### Formatters
 
-+ `prettier_eslint`
-+ `prettier_standard`
-+ `prettier`
-+ `standard_fmt`
-+ `ts_standard_fmt`
-+ `xo_fmt`
++ `prettier_eslint` => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
++ `prettier_standard` => `require 'diagnosticls-nvim.formatters.prettier_standard'`
++ `prettier` => `require 'diagnosticls-nvim.formatters.prettier'`
++ `standard_fmt` => `require 'diagnosticls-nvim.formatters.standard_fmt'`
++ `ts_standard_fmt` => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
++ `xo_fmt` => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [lsp]: https://neovim.io/doc/user/lsp.html
