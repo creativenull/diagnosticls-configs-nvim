@@ -80,8 +80,11 @@ Below are the supported linters and formatters that are configured to run with d
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 + Python
-    + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'`
-    + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
+    + _Linters_
+        + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'`
+        + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
+    + _Formatters_
+        + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'`
 + Go
     + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'`
     + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
@@ -124,3 +127,4 @@ Coming Soon
 [ts_standard]: https://github.com/standard/ts-standard
 [vint]: https://github.com/Vimjas/vint
 [xo]: https://github.com/xojs/xo
+[autopep8]: https://github.com/hhatto/autopep8
