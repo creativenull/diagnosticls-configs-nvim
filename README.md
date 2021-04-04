@@ -59,22 +59,22 @@ Below are the supported linters and formatters that are configured to run with d
 `require` code into your `setup()` function shown above.
 
 + JavaScript
-    + __Linters__
+    + _Linters_
         + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
         + [`standard`][standard] => `require 'diagnosticls-nvim.linters.standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
-    + __Formatters__
+    + _Formatters_
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier_standard`][prettier_standard] => `require 'diagnosticls-nvim.formatters.prettier_standard'`
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
         + [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 + TypeScript
-    + __Linters__
+    + _Linters_
         + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
         + [`ts_standard`][ts_standard] => `require 'diagnosticls-nvim.linters.ts_standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
-    + __Formatters__
+    + _Formatters_
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
