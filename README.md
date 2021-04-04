@@ -115,7 +115,9 @@ Coming Soon
 [prettier_eslint]: https://github.com/prettier/prettier-eslint
 [prettier_standard]: https://github.com/sheerun/prettier-standard
 [psalm]: https://github.com/vimeo/psalm
+[pylint]: https://github.com/PyCQA/pylint
 [reek]: https://github.com/troessner/reek
+[revive]: https://github.com/mgechev/revive
 [rubocop]: https://github.com/rubocop/rubocop
 [standard]: https://github.com/standard/standard
 [stylelint]: https://github.com/stylelint/stylelint
