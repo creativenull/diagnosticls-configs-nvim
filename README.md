@@ -78,7 +78,7 @@ Below are the supported linters and formatters that are configured to run with d
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
-        + [`xo_fmt`][xo_fmt] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
+        + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 + Python
     + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'`
     + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
