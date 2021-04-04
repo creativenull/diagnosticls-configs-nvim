@@ -58,33 +58,67 @@ require 'diagnosticls-nvim'.setup {
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
 `require` code into your `setup()` function shown above.
 
-### Linters
++ JavaScript
+    + __Linters__
+        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
+        + [`standard`][standard] => `require 'diagnosticls-nvim.linters.standard'`
+        + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
+    + __Formatters__
+        + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
+        + [`prettier_standard`][prettier_standard] => `require 'diagnosticls-nvim.formatters.prettier_standard'`
+        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
+        + [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
+        + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
++ TypeScript
+    + __Linters__
+        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
+        + [`ts_standard`][ts_standard] => `require 'diagnosticls-nvim.linters.ts_standard'`
+        + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
+    + __Formatters__
+        + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
+        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
+        + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
+        + [`xo_fmt`][xo_fmt] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
++ Python
+    + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'`
+    + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
++ Go
+    + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'`
+    + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
++ Ruby
+    + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'`
+    + [`rubocop`][rubocop] => `require 'diagnosticls-nvim.linters.rubocop'`
++ CSS/SCSS/LESS
+    + [`stylelint`][stylelint] => `require 'diagnosticls-nvim.linters.stylelint'`
++ PHP
+    + [`phpcs`][phpcs] => `require 'diagnosticls-nvim.linters.phpcs'`
+    + [`phpstan`][phpstan] => `require 'diagnosticls-nvim.linters.phpstan'`
+    + [`psalm`][psalm] => `require 'diagnosticls-nvim.linters.psalm'`
++ Vim
+    + [`vint`][vint] => `require 'diagnosticls-nvim.linters.vint'`
 
-+ `eslint` => `require 'diagnosticls-nvim.linters.eslint'`
-+ `flake` => `require 'diagnosticls-nvim.linters.flake'`
-+ `golangci_lint` => `require 'diagnosticls-nvim.linters.golangci_lint'`
-+ `phpcs` => `require 'diagnosticls-nvim.linters.phpcs'`
-+ `phpstan` => `require 'diagnosticls-nvim.linters.phpstan'`
-+ `psalm` => `require 'diagnosticls-nvim.linters.psalm'`
-+ `pylint` => `require 'diagnosticls-nvim.linters.pylint'`
-+ `reek` => `require 'diagnosticls-nvim.linters.reek'`
-+ `revive` => `require 'diagnosticls-nvim.linters.revive'`
-+ `rubocop` => `require 'diagnosticls-nvim.linters.rubocop'`
-+ `standard` => `require 'diagnosticls-nvim.linters.standard'`
-+ `stylelint` => `require 'diagnosticls-nvim.linters.stylelint'`
-+ `ts_standard` => `require 'diagnosticls-nvim.linters.ts_standard'`
-+ `vint` => `require 'diagnosticls-nvim.linters.vint'`
-+ `xo` => `require 'diagnosticls-nvim.linters.xo'`
+## Contributing
 
-### Formatters
-
-+ `prettier_eslint` => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
-+ `prettier_standard` => `require 'diagnosticls-nvim.formatters.prettier_standard'`
-+ `prettier` => `require 'diagnosticls-nvim.formatters.prettier'`
-+ `standard_fmt` => `require 'diagnosticls-nvim.formatters.standard_fmt'`
-+ `ts_standard_fmt` => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
-+ `xo_fmt` => `require 'diagnosticls-nvim.formatters.xo_fmt'`
+Coming Soon
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [lsp]: https://neovim.io/doc/user/lsp.html
 [packer]: https://github.com/wbthomason/packer.nvim
+
+[//]: # (Linters/Formatters list)
+[eslint]: https://github.com/eslint/eslint
+[flake]: https://github.com/PyCQA/flake8
+[golangci_lint]: https://github.com/golangci/golangci-lint
+[phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
+[phpstan]: https://github.com/phpstan/phpstan
+[prettier]: https://github.com/prettier/prettier
+[prettier_eslint]: https://github.com/prettier/prettier-eslint
+[prettier_standard]: https://github.com/sheerun/prettier-standard
+[psalm]: https://github.com/vimeo/psalm
+[reek]: https://github.com/troessner/reek
+[rubocop]: https://github.com/rubocop/rubocop
+[standard]: https://github.com/standard/standard
+[stylelint]: https://github.com/stylelint/stylelint
+[ts_standard]: https://github.com/standard/ts-standard
+[vint]: https://github.com/Vimjas/vint
+[xo]: https://github.com/xojs/xo
