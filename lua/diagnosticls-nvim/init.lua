@@ -9,7 +9,7 @@ local diagnosticls_nvim_lsp_opts = {
 -- @param lsp_opts table
 -- @return void
 M.init = function(lsp_opts)
-  vim.tbl_extend('force', diagnosticls_nvim_lsp_opts, lsp_opts)
+  diagnosticls_nvim_lsp_opts = vim.tbl_extend('force', diagnosticls_nvim_lsp_opts, lsp_opts)
 end
 
 -- Setup the linter and/or formatter based on the filetype
