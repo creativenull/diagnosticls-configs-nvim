@@ -84,6 +84,7 @@ Below are the supported linters and formatters that are configured to run with d
     - [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
   - _Formatters_
     - [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
+    - [`eslint`][eslint] => `require 'diagnosticls-nvim.formatters.eslint'`
     - [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
     - [`prettier_standard`][prettier_standard] => `require 'diagnosticls-nvim.formatters.prettier_standard'`
     - [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
@@ -95,6 +96,7 @@ Below are the supported linters and formatters that are configured to run with d
     - [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
   - _Formatters_
     - [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
+    - [`eslint`][eslint] => `require 'diagnosticls-nvim.formatters.eslint'`
     - [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
     - [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
     - [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
