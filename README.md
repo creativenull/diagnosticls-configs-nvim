@@ -53,6 +53,28 @@ require 'diagnosticls-nvim'.setup {
 }
 ```
 
+## Default configuration
+
+A default configuration for the supported filetypes is provided but not activated by default.
+
+To activate the default configuration you can pass the `default_config` flag as true in the init function:
+
+```lua
+require 'diagnosticls-nvim'.init {
+  default_config = true, --apply default config for supported linters and formatters
+  format = true -- default to true, use false if you don't want to setup formatters by default
+}
+```
+
+You still need to call the setup function.
+
+If you wish to overwrite any of the default configuration
+you can simply pass the parameters as described in the previous "Setup" section.
+
+NOTE: The default formatters configuration won't enable "format on save".
+You still need to setup that on your lsp on_attach handler.
+
+
 ## Supported linters and formatters
 
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
@@ -60,45 +82,45 @@ Below are the supported linters and formatters that are configured to run with d
 
 + JavaScript
     + _Linters_
-        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
+        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'` --default
         + [`standard`][standard] => `require 'diagnosticls-nvim.linters.standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
     + _Formatters_
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier_standard`][prettier_standard] => `require 'diagnosticls-nvim.formatters.prettier_standard'`
-        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
+        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 + TypeScript
     + _Linters_
-        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'`
+        + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'` --default
         + [`ts_standard`][ts_standard] => `require 'diagnosticls-nvim.linters.ts_standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
     + _Formatters_
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
-        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'`
+        + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
 + Python
     + _Linters_
-        + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'`
+        + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'` --default
         + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
     + _Formatters_
-        + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'`
+        + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'` --default
 + Go
-    + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'`
+    + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint' --default
     + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
 + Ruby
-    + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'`
+    + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'` --default
     + [`rubocop`][rubocop] => `require 'diagnosticls-nvim.linters.rubocop'`
 + CSS/SCSS/LESS
-    + [`stylelint`][stylelint] => `require 'diagnosticls-nvim.linters.stylelint'`
+    + [`stylelint`][stylelint] => `require 'diagnosticls-nvim.linters.stylelint'` --default
 + PHP
-    + [`phpcs`][phpcs] => `require 'diagnosticls-nvim.linters.phpcs'`
+    + [`phpcs`][phpcs] => `require 'diagnosticls-nvim.linters.phpcs'` --default
     + [`phpstan`][phpstan] => `require 'diagnosticls-nvim.linters.phpstan'`
     + [`psalm`][psalm] => `require 'diagnosticls-nvim.linters.psalm'`
 + Vim
-    + [`vint`][vint] => `require 'diagnosticls-nvim.linters.vint'`
+    + [`vint`][vint] => `require 'diagnosticls-nvim.linters.vint'` --default
 
 ## Contributing
 
