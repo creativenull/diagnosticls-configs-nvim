@@ -108,8 +108,11 @@ Below are the supported linters and formatters that are configured to run with d
     + _Formatters_
         + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'` --default
 + Go
-    + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint' --default
-    + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
+    + _Linters_
+        + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'` --default
+        + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
+    + _Formatters_
+        + [`gofumpt`][gofumpt] => `require 'diagnosticls-nvim.formatters.gofumpt'`
 + Ruby
     + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'` --default
     + [`rubocop`][rubocop] => `require 'diagnosticls-nvim.linters.rubocop'`
@@ -131,8 +134,10 @@ Coming Soon
 [packer]: https://github.com/wbthomason/packer.nvim
 
 [//]: # (Linters/Formatters list)
+[autopep8]: https://github.com/hhatto/autopep8
 [eslint]: https://github.com/eslint/eslint
 [flake]: https://github.com/PyCQA/flake8
+[gofumpt]: https://github.com/mvdan/gofumpt
 [golangci_lint]: https://github.com/golangci/golangci-lint
 [phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
 [phpstan]: https://github.com/phpstan/phpstan
@@ -149,4 +154,3 @@ Coming Soon
 [ts_standard]: https://github.com/standard/ts-standard
 [vint]: https://github.com/Vimjas/vint
 [xo]: https://github.com/xojs/xo
-[autopep8]: https://github.com/hhatto/autopep8
