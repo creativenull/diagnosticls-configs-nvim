@@ -86,23 +86,23 @@ Below are the supported linters and formatters that are configured to run with d
         + [`standard`][standard] => `require 'diagnosticls-nvim.linters.standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
     + _Formatters_
+        + [`eslint_fmt`][eslint] => `require 'diagnosticls-nvim.formatters.eslint_fmt'`
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier_standard`][prettier_standard] => `require 'diagnosticls-nvim.formatters.prettier_standard'`
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
-        + [`eslint`][eslint] => `require 'diagnosticls-nvim.formatters.eslint'`
 + TypeScript
     + _Linters_
         + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'` --default
         + [`ts_standard`][ts_standard] => `require 'diagnosticls-nvim.linters.ts_standard'`
         + [`xo`][xo] => `require 'diagnosticls-nvim.linters.xo'`
     + _Formatters_
+        + [`eslint_fmt`][eslint] => `require 'diagnosticls-nvim.formatters.eslint_fmt'`
         + [`prettier_eslint`][prettier_eslint] => `require 'diagnosticls-nvim.formatters.prettier_eslint'`
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
-        + [`eslint`][eslint] => `require 'diagnosticls-nvim.formatters.eslint'`
 + Python
     + _Linters_
         + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'` --default
