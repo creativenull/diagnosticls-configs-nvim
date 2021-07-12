@@ -85,6 +85,7 @@ Below are the supported linters and formatters that are configured to run with d
         + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
     + _Formatters_
         + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'`
+        + [`black`][black] => `require 'diagnosticls-nvim.formatters.black'`
 + Go
     + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'`
     + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
@@ -128,3 +129,4 @@ Coming Soon
 [vint]: https://github.com/Vimjas/vint
 [xo]: https://github.com/xojs/xo
 [autopep8]: https://github.com/hhatto/autopep8
+[black]: https://github.com/psf/black
