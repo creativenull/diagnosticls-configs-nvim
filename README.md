@@ -109,6 +109,7 @@ Below are the supported linters and formatters that are configured to run with d
         + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
     + _Formatters_
         + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'` --default
+        + [`black`][black] => `require 'diagnosticls-nvim.formatters.black'`
 + Go
     + _Linters_
         + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'` --default
@@ -137,6 +138,7 @@ Coming Soon
 
 [//]: # (Linters/Formatters list)
 [autopep8]: https://github.com/hhatto/autopep8
+[black]: https://github.com/psf/black
 [eslint]: https://github.com/eslint/eslint
 [flake]: https://github.com/PyCQA/flake8
 [gofumpt]: https://github.com/mvdan/gofumpt
