@@ -4,7 +4,15 @@ return {
   sourceName = 'rubocop',
   command = fs.get_executable('bundle'),
   debounce = 100,
-  args = { 'exec', 'rubocop', '--format', 'json', '--force-exclusion', '--stdin', '%filepath' },
+  args = {
+    'exec',
+    'rubocop',
+    '--format',
+    'json',
+    '--force-exclusion',
+    '--stdin',
+    '%filepath',
+  },
   parseJson = {
     errorsRoot = 'files[0].offenses',
     line = 'location.start_line',

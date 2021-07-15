@@ -16,12 +16,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[^(\d+?):(\d+?):([a-z]+?):(.*)$]],
-    {
-      line = 1,
-      column = 2,
-      security = 3,
-      message = 4
-    }
+    {line = 1, column = 2, security = 3, message = 4},
   },
   securities = {
     informational = 'hint',
@@ -29,11 +24,7 @@ return {
     convention = 'info',
     warning = 'warning',
     error = 'error',
-    fatal = 'error'
+    fatal = 'error',
   },
-  rootPatterns = {
-    '.git',
-    'pyproject.toml',
-    'setup.py',
-  },
+  rootPatterns = {'.git', 'pyproject.toml', 'setup.py'},
 }
