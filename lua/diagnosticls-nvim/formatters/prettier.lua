@@ -3,7 +3,7 @@ local fs = require 'diagnosticls-nvim.fs'
 return {
   sourceName = 'prettier',
   command = fs.get_executable('prettier', 'node'),
-  args = { '--stdin', '--stdin-filepath', '%filepath' },
+  args = {'--stdin', '--stdin-filepath', '%filepath'},
   rootPatterns = {
     '.prettierrc',
     '.prettierrc.json',
