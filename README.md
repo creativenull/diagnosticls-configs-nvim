@@ -3,6 +3,10 @@
 A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
 Have a look at the currently [supported linters/formatters](#supported-linters-and-formatters) below.
 
+# TODO
+
++ [ ] Add ability to override args, root patterns, etc
+
 ## Installation
 
 ### Requirements
@@ -80,6 +84,14 @@ You still need to setup that on your lsp on_attach handler.
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
 `require` code into your `setup()` function shown above.
 
++ CSS/SCSS/LESS
+    + [`stylelint`][stylelint] => `require 'diagnosticls-nvim.linters.stylelint'` --default
++ Go
+    + _Linters_
+        + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'` --default
+        + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
+    + _Formatters_
+        + [`gofumpt`][gofumpt] => `require 'diagnosticls-nvim.formatters.gofumpt'`
 + JavaScript
     + _Linters_
         + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'` --default
@@ -92,6 +104,25 @@ Below are the supported linters and formatters that are configured to run with d
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`standard_fmt`][standard] => `require 'diagnosticls-nvim.formatters.standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
++ Lua
+    + _Linters_
+        + [`luacheck`][luacheck] => `require 'diagnosticls-nvim.linters.luacheck'` --default
+    + _Formatters_
+        + [`lua-format`][lua-format] => `require 'diagnosticls-nvim.formatters.lua_format'` --default
++ PHP
+    + [`phpcs`][phpcs] => `require 'diagnosticls-nvim.linters.phpcs'` --default
+    + [`phpstan`][phpstan] => `require 'diagnosticls-nvim.linters.phpstan'`
+    + [`psalm`][psalm] => `require 'diagnosticls-nvim.linters.psalm'`
++ Python
+    + _Linters_
+        + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'` --default
+        + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
+    + _Formatters_
+        + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'` --default
+        + [`black`][black] => `require 'diagnosticls-nvim.formatters.black'`
++ Ruby
+    + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'` --default
+    + [`rubocop`][rubocop] => `require 'diagnosticls-nvim.linters.rubocop'`
 + TypeScript
     + _Linters_
         + [`eslint`][eslint] => `require 'diagnosticls-nvim.linters.eslint'` --default
@@ -103,28 +134,6 @@ Below are the supported linters and formatters that are configured to run with d
         + [`prettier`][prettier] => `require 'diagnosticls-nvim.formatters.prettier'` --default
         + [`ts_standard_fmt`][ts_standard] => `require 'diagnosticls-nvim.formatters.ts_standard_fmt'`
         + [`xo_fmt`][xo] => `require 'diagnosticls-nvim.formatters.xo_fmt'`
-+ Python
-    + _Linters_
-        + [`flake`][flake] => `require 'diagnosticls-nvim.linters.flake'` --default
-        + [`pylint`][pylint] => `require 'diagnosticls-nvim.linters.pylint'`
-    + _Formatters_
-        + [`autopep8`][autopep8] => `require 'diagnosticls-nvim.formatters.autopep8'` --default
-        + [`black`][black] => `require 'diagnosticls-nvim.formatters.black'`
-+ Go
-    + _Linters_
-        + [`golangci_lint`][golangci_lint] => `require 'diagnosticls-nvim.linters.golangci_lint'` --default
-        + [`revive`][revive] => `require 'diagnosticls-nvim.linters.revive'`
-    + _Formatters_
-        + [`gofumpt`][gofumpt] => `require 'diagnosticls-nvim.formatters.gofumpt'`
-+ Ruby
-    + [`reek`][reek] => `require 'diagnosticls-nvim.linters.reek'` --default
-    + [`rubocop`][rubocop] => `require 'diagnosticls-nvim.linters.rubocop'`
-+ CSS/SCSS/LESS
-    + [`stylelint`][stylelint] => `require 'diagnosticls-nvim.linters.stylelint'` --default
-+ PHP
-    + [`phpcs`][phpcs] => `require 'diagnosticls-nvim.linters.phpcs'` --default
-    + [`phpstan`][phpstan] => `require 'diagnosticls-nvim.linters.phpstan'`
-    + [`psalm`][psalm] => `require 'diagnosticls-nvim.linters.psalm'`
 + Vim
     + [`vint`][vint] => `require 'diagnosticls-nvim.linters.vint'` --default
 
@@ -158,3 +167,5 @@ Coming Soon
 [ts_standard]: https://github.com/standard/ts-standard
 [vint]: https://github.com/Vimjas/vint
 [xo]: https://github.com/xojs/xo
+[luacheck]: https://github.com/mpeterv/luacheck
+[lua-format]: https://github.com/Koihik/LuaFormatter
