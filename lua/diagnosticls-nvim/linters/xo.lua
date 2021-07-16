@@ -11,7 +11,7 @@ return {
     column = 'column',
     endLine = 'endLine',
     endColumn = 'endColumn',
-    message = '${message} [${ruleId}]',
+    message = '[xo] ${message} [${ruleId}]',
     security = 'severity',
   },
   securities = {[2] = 'error', [1] = 'warning'},

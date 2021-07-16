@@ -7,7 +7,7 @@ return {
   debounce = 100,
   formatPattern = {
     [[^[^:]+:(\d+):(\d+):\s+(.*)$]],
-    {line = 1, column = 2, message = {3}},
+    {line = 1, column = 2, message = {'[revive] ', 3}},
   },
   rootPatterns = {'.git', 'go.mod'},
 }

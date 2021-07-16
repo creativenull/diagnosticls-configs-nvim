@@ -10,7 +10,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[^\s*([^:]+):(\d+):(\d+):\s([^:]+)$]],
-    {line = 2, column = 3, message = 4},
+    {line = 2, column = 3, message = {'[ts-standard] ', 4}},
   },
   rootPatterns = {'.git', '.gitignore'},
 }

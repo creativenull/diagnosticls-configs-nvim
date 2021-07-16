@@ -16,7 +16,7 @@ return {
   parseJson = {
     line = 'lines[0]',
     endLine = 'lines[1]',
-    message = '[${smell_type}] ${message}',
+    message = '[reek] [${smell_type}] ${message}',
   },
   securities = {undefined = 'info'},
 }

@@ -16,7 +16,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[^(\d+?):(\d+?):([a-z]+?):(.*)$]],
-    {line = 1, column = 2, security = 3, message = 4},
+    {line = 1, column = 2, security = 3, message = {'[pylint] ', 4}},
   },
   securities = {
     informational = 'hint',

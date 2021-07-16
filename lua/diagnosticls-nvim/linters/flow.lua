@@ -13,7 +13,7 @@ return {
     column = 'message[0].loc.start.column',
     endLine = 'message[0].loc.end.line',
     endColumn = 'message[0].loc.end.column',
-    message = '${message[0].descr} [flow]',
+    message = '[flow] ${message[0].descr}',
     security = 'level',
   },
   securities = {error = 'error', warning = 'warning'},

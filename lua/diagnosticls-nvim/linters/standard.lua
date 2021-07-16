@@ -10,7 +10,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[^\s*<\w+>:(\d+):(\d+):\s+(.*)(\r|\n)*$]],
-    {line = 1, column = 2, message = 3},
+    {line = 1, column = 2, message = {'[standard] ', 3}},
   },
   rootPatterns = {'.git'},
 }

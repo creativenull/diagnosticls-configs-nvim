@@ -9,7 +9,7 @@ return {
     errorsRoot = '[0].warnings',
     line = 'line',
     column = 'column',
-    message = '${text}',
+    message = '[stylelint] ${text}',
     security = 'severity',
   },
   securities = {error = 'error', warning = 'warning'},

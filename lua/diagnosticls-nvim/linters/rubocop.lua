@@ -19,7 +19,7 @@ return {
     endLine = 'location.last_line',
     column = 'location.start_column',
     endColumn = 'location.end_column',
-    message = '[${cop_name}] ${message}',
+    message = '[rubocop] [${cop_name}] ${message}',
     security = 'severity',
   },
   securities = {

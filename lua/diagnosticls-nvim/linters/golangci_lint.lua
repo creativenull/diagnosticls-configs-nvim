@@ -11,7 +11,7 @@ return {
     errorsRoot = 'Issues',
     line = 'Pos.Line',
     column = 'Pos.Column',
-    message = '${Text} [${FromLinter}]',
+    message = '[golangci_lint] ${Text} [${FromLinter}]',
   },
   rootPatterns = {'.git', 'go.mod'},
 }

@@ -8,6 +8,9 @@ return {
   offsetLine = 0,
   offsetColumn = 0,
   formatLines = 1,
-  formatPattern = {[[^[^:]+:(\d+):(.*)(\r|\n)*$]], {line = 1, message = 2}},
+  formatPattern = {
+    [[^[^:]+:(\d+):(.*)(\r|\n)*$]],
+    {line = 1, message = {'[phpstan] ', 2}},
+  },
   rootPatterns = {'.git', 'vendor', 'composer.json'},
 }

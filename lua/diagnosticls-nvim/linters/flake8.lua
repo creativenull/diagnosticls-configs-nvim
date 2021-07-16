@@ -10,7 +10,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[(\d+),(\d+),([A-Z]),(.*)(\r|\n)*$]],
-    {line = 1, column = 2, security = 3, message = 4},
+    {line = 1, column = 2, security = 3, message = {'[flake8] ', 4}},
   },
   securities = {
     W = 'warning',
