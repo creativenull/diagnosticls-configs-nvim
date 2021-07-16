@@ -1,2 +1,2 @@
 lint:
-	luacheck --std luajit ./lua
+	luacheck ./lua
