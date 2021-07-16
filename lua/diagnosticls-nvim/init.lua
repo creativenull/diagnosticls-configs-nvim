@@ -8,6 +8,9 @@ local diagnosticls_nvim_lsp_opts = {
 }
 
 local diagnosticls_nvim_defaults = {
+  ['css'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
+  ['go'] = {linter = require 'diagnosticls-nvim.linters.golangci_lint'},
+  ['html'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
   ['javascript'] = {
     linter = require 'diagnosticls-nvim.linters.eslint',
     formatter = require 'diagnosticls-nvim.formatters.prettier',
@@ -16,6 +19,17 @@ local diagnosticls_nvim_defaults = {
     linter = require 'diagnosticls-nvim.linters.eslint',
     formatter = require 'diagnosticls-nvim.formatters.prettier',
   },
+  ['less'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
+  ['lua'] = {
+    linter = require 'diagnosticls-nvim.linters.luacheck',
+    formatter = require 'diagnosticls-nvim.formatters.lua_format',
+  },
+  ['php'] = {linter = require 'diagnosticls-nvim.linters.phpcs'},
+  ['python'] = {
+    linter = require 'diagnosticls-nvim.linters.flake8',
+    formatter = require 'diagnosticls-nvim.formatters.autopep8',
+  },
+  ['ruby'] = {linter = require 'diagnosticls-nvim.linters.reek'},
   ['typescript'] = {
     linter = require 'diagnosticls-nvim.linters.eslint',
     formatter = require 'diagnosticls-nvim.formatters.prettier',
@@ -24,16 +38,6 @@ local diagnosticls_nvim_defaults = {
     linter = require 'diagnosticls-nvim.linters.eslint',
     formatter = require 'diagnosticls-nvim.formatters.prettier',
   },
-  ['python'] = {
-    linter = require 'diagnosticls-nvim.linters.flake8',
-    formatter = require 'diagnosticls-nvim.formatters.autopep8',
-  },
-  ['go'] = {linter = require 'diagnosticls-nvim.linters.golangci_lint'},
-  ['ruby'] = {linter = require 'diagnosticls-nvim.linters.reek'},
-  ['css'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
-  ['html'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
-  ['less'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
-  ['php'] = {linter = require 'diagnosticls-nvim.linters.phpcs'},
   ['vim'] = {linter = require 'diagnosticls-nvim.linters.vint'},
 }
 
@@ -41,7 +45,9 @@ local diagnosticls_nvim_defaults = {
 -- @param lsp_opts table
 -- @return void
 M.init = function(lsp_opts)
-  diagnosticls_nvim_lsp_opts = vim.tbl_extend('force', diagnosticls_nvim_lsp_opts, lsp_opts)
+  diagnosticls_nvim_lsp_opts = vim.tbl_extend('force',
+                                              diagnosticls_nvim_lsp_opts,
+                                              lsp_opts)
 end
 
 -- Setup the linter and/or formatter based on the filetype
