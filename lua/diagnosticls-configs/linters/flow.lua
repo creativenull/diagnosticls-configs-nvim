@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-nvim.fs'
+local fs = require 'diagnosticls-configs.fs'
 
 -- TODO
 -- This may or may not work? May want to start implementing some tests

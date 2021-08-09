@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-nvim.fs'
+local fs = require 'diagnosticls-configs.fs'
 
 return {
   sourceName = 'ts_standard_fmt',

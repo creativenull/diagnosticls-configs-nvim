@@ -46,7 +46,7 @@ end
 -- @retrun string
 M.get_executable = function(command, type)
   if command == nil then
-    vim.api.nvim_err_writeln('[diagnosticls-nvim] "command" is required')
+    vim.api.nvim_err_writeln('[diagnosticls-configs] "command" is required')
     return
   end
 
