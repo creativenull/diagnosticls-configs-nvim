@@ -8,37 +8,37 @@ local diagnosticls_nvim_lsp_opts = {
 }
 
 local diagnosticls_nvim_defaults = {
-  ['css'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
-  ['go'] = {linter = require 'diagnosticls-nvim.linters.golangci_lint'},
-  ['html'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
+  ['css'] = {linter = require 'diagnosticls-configs.linters.stylelint'},
+  ['go'] = {linter = require 'diagnosticls-configs.linters.golangci_lint'},
+  ['html'] = {linter = require 'diagnosticls-configs.linters.stylelint'},
   ['javascript'] = {
-    linter = require 'diagnosticls-nvim.linters.eslint',
-    formatter = require 'diagnosticls-nvim.formatters.prettier',
+    linter = require 'diagnosticls-configs.linters.eslint',
+    formatter = require 'diagnosticls-configs.formatters.prettier',
   },
   ['javascriptreact'] = {
-    linter = require 'diagnosticls-nvim.linters.eslint',
-    formatter = require 'diagnosticls-nvim.formatters.prettier',
+    linter = require 'diagnosticls-configs.linters.eslint',
+    formatter = require 'diagnosticls-configs.formatters.prettier',
   },
-  ['less'] = {linter = require 'diagnosticls-nvim.linters.stylelint'},
+  ['less'] = {linter = require 'diagnosticls-configs.linters.stylelint'},
   ['lua'] = {
-    linter = require 'diagnosticls-nvim.linters.luacheck',
-    formatter = require 'diagnosticls-nvim.formatters.lua_format',
+    linter = require 'diagnosticls-configs.linters.luacheck',
+    formatter = require 'diagnosticls-configs.formatters.lua_format',
   },
-  ['php'] = {linter = require 'diagnosticls-nvim.linters.phpcs'},
+  ['php'] = {linter = require 'diagnosticls-configs.linters.phpcs'},
   ['python'] = {
-    linter = require 'diagnosticls-nvim.linters.flake8',
-    formatter = require 'diagnosticls-nvim.formatters.autopep8',
+    linter = require 'diagnosticls-configs.linters.flake8',
+    formatter = require 'diagnosticls-configs.formatters.autopep8',
   },
-  ['ruby'] = {linter = require 'diagnosticls-nvim.linters.reek'},
+  ['ruby'] = {linter = require 'diagnosticls-configs.linters.reek'},
   ['typescript'] = {
-    linter = require 'diagnosticls-nvim.linters.eslint',
-    formatter = require 'diagnosticls-nvim.formatters.prettier',
+    linter = require 'diagnosticls-configs.linters.eslint',
+    formatter = require 'diagnosticls-configs.formatters.prettier',
   },
   ['typescriptreact'] = {
-    linter = require 'diagnosticls-nvim.linters.eslint',
-    formatter = require 'diagnosticls-nvim.formatters.prettier',
+    linter = require 'diagnosticls-configs.linters.eslint',
+    formatter = require 'diagnosticls-configs.formatters.prettier',
   },
-  ['vim'] = {linter = require 'diagnosticls-nvim.linters.vint'},
+  ['vim'] = {linter = require 'diagnosticls-configs.linters.vint'},
 }
 
 -- Initialize lsp options to pass thru diagnosticls
