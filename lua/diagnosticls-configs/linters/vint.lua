@@ -3,13 +3,18 @@ local fs = require 'diagnosticls-configs.fs'
 return {
   sourceName = 'vint',
   command = fs.get_executable('vint'),
-  args = {'--enable-neovim', '-'},
+  args = {'--enable-neovim', '--json', '%tempfile'},
   debounce = 100,
-  offsetLine = 0,
-  offsetColumn = 0,
-  formatLines = 1,
-  formatPattern = {
-    [[[^:]+:(\d+):(\d+):\s*(.*)(\r|\n)*$]],
-    {line = 1, column = 2, message = {'[vint] ', 3}},
+  parseJson = {
+    sourceName = 'file_path',
+    line = 'line_number',
+    column = 'column_number',
+    security = 'severity',
+    message = '[vint] ${description} [${policy_name}]',
+  },
+  securities = {
+    error = 'error',
+    warning = 'warning',
+    style_problem = 'info',
   },
 }
