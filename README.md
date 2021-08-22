@@ -10,9 +10,11 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 # TODO
 
 + [ ] Add ability to override args, root patterns, etc
++ [ ] Add vim docs
++ [ ] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
++ [ ] Add contributing content
 
 ## Installation
-
 ### Requirements
 
 + Neovim v0.5 and up
@@ -81,7 +83,6 @@ you can simply pass the parameters as described in the previous "Setup" section.
 
 NOTE: The default formatters configuration won't enable "format on save".
 You still need to setup that on your lsp on_attach handler.
-
 
 ## Supported linters and formatters
 
