@@ -72,7 +72,7 @@ A default configuration for the supported filetypes is provided but not activate
 To activate the default configuration you can pass the `default_config` flag as true in the init function:
 
 ```lua
-require 'diagnosticls-configs'.init {
+dlsconfig.init {
   default_config = true, --apply default config for supported linters and formatters
   format = true -- default to true, use false if you don't want to setup formatters by default
 }
