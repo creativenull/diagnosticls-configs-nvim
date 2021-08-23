@@ -9,7 +9,7 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 
 # TODO
 
-+ [ ] Add ability to override args, root patterns, etc
++ [X] Add ability to override args, root patterns, etc
 + [ ] Add vim docs
 + [ ] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
 + [ ] Add contributing content
@@ -84,6 +84,56 @@ you can simply pass the parameters as described in the previous "Setup" section.
 NOTE: The default formatters configuration won't enable "format on save".
 You still need to setup that on your lsp on_attach handler.
 
+## Advanced Configuration
+
+If the default configuration do not work for certain linters, or root patterns need to be changed, etc. Then you can
+overwrite the config by just extending them, the configs are exactly the same as the underlying
+[diagnostic-languageserver API][dls-setup] on how to specify linter/formatter config. You can override the
+configuration in one of two ways:
+
+### Use built-in `extend_config()` utility
+
+We provide a custom function that will help extend your configuration:
+
+```lua
+local dls = require 'diagnosticls-configs'
+local extend_config = require 'diagnosticls-configs.util'.extend_config
+local eslint = require 'diagnosticls-configs.linter.eslint'
+
+-- override
+eslint = extend_config(eslint, {
+  args = {'some', 'args'},
+  rootPatterns = {'.git'}
+})
+
+dls.setup {
+  javascript = {
+    linter = eslint
+  }
+}
+```
+
+### Use `vim.tbl_extend()` function
+
+You can also use the built-in vim API function to extend a table (which is what we use for `extend_config()`):
+
+```lua
+local dls = require 'diagnosticls-configs'
+local eslint = require 'diagnosticls-configs.linter.eslint'
+
+-- override, force the keys on the right most argument
+eslint = vim.tbl_extend('force', eslint, {
+  args = {'some', 'args'},
+  rootPatterns = {'.git'}
+})
+
+dls.setup {
+  javascript = {
+    linter = eslint
+  }
+}
+```
+
 ## Supported linters and formatters
 
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
@@ -147,6 +197,7 @@ Below are the supported linters and formatters that are configured to run with d
 Coming Soon
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
+[dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
 [lsp]: https://neovim.io/doc/user/lsp.html
 [packer]: https://github.com/wbthomason/packer.nvim
 
