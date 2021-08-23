@@ -40,7 +40,9 @@ local function on_attach(client)
   print('Attached to ' .. client.name)
 end
 
-require 'diagnosticls-configs'.init {
+local dlsconfig = require 'diagnosticls-configs'
+
+dlsconfig.init {
   on_attach = on_attach -- Your custom attach function
 }
 ```
@@ -51,7 +53,7 @@ for `javascript` and `javascriptreact` filetype:
 ```lua
 local eslint = require 'diagnosticls-configs.linters.eslint'
 local prettier = require 'diagnosticls-configs.formatters.prettier'
-require 'diagnosticls-configs'.setup {
+dlsconfig.setup {
   ['javascript'] = {
     linter = eslint,
     formatter = prettier
@@ -86,48 +88,21 @@ You still need to setup that on your lsp on_attach handler.
 
 ## Advanced Configuration
 
-If the default configuration do not work for certain linters, or root patterns need to be changed, etc. Then you can
-overwrite the config by just extending them, the configs are exactly the same as the underlying
-[diagnostic-languageserver API][dls-setup] on how to specify linter/formatter config. You can override the
-configuration in one of two ways:
-
-### Use built-in `extend_config()` utility
-
-We provide a custom function that will help extend your configuration:
+If the default configuration do not work for certain linters/formatters, or root patterns need to be changed, etc.
+Then you can overwrite the config by just extending them, the configs are exactly the same as the underlying
+[diagnostic-languageserver API][dls-setup] on how to specify linter/formatter config. You can override with the
+`vim.tbl_extend()` function.
 
 ```lua
-local dls = require 'diagnosticls-configs'
-local extend_config = require 'diagnosticls-configs.util'.extend_config
 local eslint = require 'diagnosticls-configs.linter.eslint'
 
 -- override
-eslint = extend_config(eslint, {
-  args = {'some', 'args'},
-  rootPatterns = {'.git'}
-})
-
-dls.setup {
-  javascript = {
-    linter = eslint
-  }
-}
-```
-
-### Use `vim.tbl_extend()` function
-
-You can also use the built-in vim API function to extend a table (which is what we use for `extend_config()`):
-
-```lua
-local dls = require 'diagnosticls-configs'
-local eslint = require 'diagnosticls-configs.linter.eslint'
-
--- override, force the keys on the right most argument
 eslint = vim.tbl_extend('force', eslint, {
   args = {'some', 'args'},
   rootPatterns = {'.git'}
 })
 
-dls.setup {
+dlsconfig.setup {
   javascript = {
     linter = eslint
   }
