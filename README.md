@@ -11,8 +11,8 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 
 + [X] Add ability to override args, root patterns, etc
 + [X] Add vim docs
++ [X] Add contributing content
 + [ ] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
-+ [ ] Add contributing content
 
 ## Installation
 ### Requirements
