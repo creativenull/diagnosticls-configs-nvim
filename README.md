@@ -12,7 +12,7 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 + [X] Add ability to override args, root patterns, etc
 + [X] Add vim docs
 + [X] Add contributing content
-+ [ ] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
++ [X] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
 
 ## Installation
 ### Requirements
@@ -53,15 +53,19 @@ for `javascript` and `javascriptreact` filetype:
 
 ```lua
 local eslint = require 'diagnosticls-configs.linters.eslint'
+local standard = require 'diagnosticls-configs.linters.standard'
 local prettier = require 'diagnosticls-configs.formatters.prettier'
+local prettier_standard = require 'diagnosticls-configs.formatters.prettier_standard'
 dlsconfig.setup {
   ['javascript'] = {
     linter = eslint,
     formatter = prettier
   },
   ['javascriptreact'] = {
-    linter = eslint,
-    formatter = prettier
+    -- Add multiple linters
+    linter = { eslint, standard },
+    -- Add multiple formatters
+    formatter = { prettier, prettier_standard }
   }
 }
 ```
