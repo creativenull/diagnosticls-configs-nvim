@@ -73,24 +73,47 @@ M.setup = function(opts)
     opts = vim.tbl_extend('force', diagnosticls_nvim_defaults, opts)
   end
 
-  for k1, v1 in pairs(opts) do
-
+  for filetype,config_types in pairs(opts) do
     -- Start adding to opts
-    table.insert(filetypes, k1)
+    table.insert(filetypes, filetype)
 
-    for k2, v2 in pairs(v1) do
-      if k2 == 'linter' then
-        local source_name = v2['sourceName']
-        setup_opts.init_options.filetypes[k1] = source_name
-        setup_opts.init_options.linters[source_name] = v2
+    for config_type,config in pairs(config_types) do
+      if config_type == 'linter' then
+
+        if vim.tbl_islist(config) then
+          local sources = {}
+          for _,config_source in pairs(config) do
+            local source_name = config_source['sourceName']
+            table.insert(sources, source_name)
+            setup_opts.init_options.linters[source_name] = config_source
+          end
+          setup_opts.init_options.filetypes[filetype] = sources
+        else
+          local source_name = config['sourceName']
+          setup_opts.init_options.linters[source_name] = config
+          setup_opts.init_options.filetypes[filetype] = source_name
+        end
+
       end
 
-      if k2 == 'formatter' and lsp_opts.format then
+      if config_type == 'formatter' and lsp_opts.format then
+
         -- diagnosticls formatters don't have the sourceName key
         -- so this is a custom key used only for this plugin
-        local source_name = v2['sourceName']
-        setup_opts.init_options.formatFiletypes[k1] = source_name
-        setup_opts.init_options.formatters[source_name] = v2
+        if vim.tbl_islist(config) then
+          local sources = {}
+          for _,config_source in pairs(config) do
+            local source_name = config_source['sourceName']
+            table.insert(sources, source_name)
+            setup_opts.init_options.formatters[source_name] = config_source
+          end
+          setup_opts.init_options.formatFiletypes[filetype] = sources
+        else
+          local source_name = config['sourceName']
+          setup_opts.init_options.formatters[source_name] = config
+          setup_opts.init_options.formatFiletypes[filetype] = source_name
+        end
+
       end
     end
   end
