@@ -43,7 +43,8 @@ end
 local dlsconfig = require 'diagnosticls-configs'
 
 dlsconfig.init {
-  on_attach = on_attach -- Your custom attach function
+  -- Your custom attach function
+  on_attach = on_attach,
 }
 ```
 
@@ -73,8 +74,10 @@ To activate the default configuration you can pass the `default_config` flag as 
 
 ```lua
 dlsconfig.init {
-  default_config = true, --apply default config for supported linters and formatters
-  format = true -- default to true, use false if you don't want to setup formatters by default
+  -- apply default config for supported linters and formatters
+  default_config = true,
+  -- default to true, use false if you don't want to setup formatters by default
+  format = true
 }
 ```
 
