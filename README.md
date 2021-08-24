@@ -10,7 +10,7 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 # TODO
 
 + [X] Add ability to override args, root patterns, etc
-+ [ ] Add vim docs
++ [X] Add vim docs
 + [ ] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
 + [ ] Add contributing content
 

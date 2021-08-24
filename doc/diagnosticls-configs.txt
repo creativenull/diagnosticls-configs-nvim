@@ -1,0 +1,114 @@
+INTRODUCTION                                      *diagnosticls-configs* *dls*
+
+A collection of linters and formatters configured for diagnostic language
+server to work with nvim-lsp.
+
+INSTALLATION                                     *diagnosticls-configs-install*
+
+To install you need the following requirements:
+
++ neovim > 0.5
++ nvim-lspconfig
++ diagnostic-languageserver - `npm i -g diagnostic-languageserver`
+
+And then install using any package manager, using packer.nvim as an example:
+
+>
+    use {
+	'creativenull/diagnosticls-configs-nvim',
+	requires = { 'neovim/nvim-lspconfig' }
+    }
+<
+
+SETUP                                              *diagnosticls-configs-setup*
+
+First you need to initialize the plugin, this is where you can pass your own
+LSP options:
+
+>
+    local function on_attach(client)
+      print('Attached to ' .. client.name)
+    end
+
+    local dlsconfig = require 'diagnosticls-configs'
+
+    dlsconfig.init {
+      on_attach = on_attach -- Your custom attach function
+    }
+<
+
+Finally, setup the linters/formatters according to the filetype, here is an
+example for running eslint and prettier for `javascript` and `javascriptreact`
+filetype:
+
+>
+    local eslint = require 'diagnosticls-configs.linters.eslint'
+    local prettier = require 'diagnosticls-configs.formatters.prettier'
+    dlsconfig.setup {
+      ['javascript'] = {
+        linter = eslint,
+        formatter = prettier
+      },
+      ['javascriptreact'] = {
+        linter = eslint,
+        formatter = prettier
+      }
+    }
+<
+
+DEFAULT CONFIGURATIONS                          *diagnosticls-configs-defaults*
+
+A default configuration for the supported filetypes is provided but not
+activated by default.
+
+To activate the default configuration you can pass the `default_config` flag as
+true in the init function:
+
+>
+    dlsconfig.init {
+      -- apply default config for supported linters and formatters
+      default_config = true,
+      -- default to true, use false if you don't want to setup formatters by default
+      format = true
+    }
+<
+
+You still need to call the setup function.
+
+If you wish to overwrite any of the default configuration
+you can simply pass the parameters as described in the previous "Setup" section.
+
+NOTE: The default formatters configuration won't enable "format on save".
+You still need to setup that on your lsp on_attach handler.
+
+ADVANCED CONFIGURATIONS                         *diagnosticls-configs-advanced*
+
+If the default configuration do not work for certain linters/formatters, or
+root patterns need to be changed, etc. Then you can overwrite the config by
+just extending them, the configs are exactly the same as the underlying
+diagnostic-languageserver API on how to specify linter/formatter config. You
+can override with the |vim.tbl_extend| function.
+
+>
+    local eslint = require 'diagnosticls-configs.linter.eslint'
+
+    -- override
+    eslint = vim.tbl_extend('force', eslint, {
+      args = {'some', 'args'},
+      rootPatterns = {'.git'}
+    })
+
+    dlsconfig.setup {
+      javascript = {
+        linter = eslint
+      }
+    }
+<
+
+SUPPORTED LINTERS AND FORMATTERS               *diagnosticls-configs-supported*
+
+Check out the repo readme for supported linters and formatters:
+
+https://github.com/creativenull/diagnosticls-configs-nvim#supported-linters-and-formatters
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
