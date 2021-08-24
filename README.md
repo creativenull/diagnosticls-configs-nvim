@@ -9,6 +9,8 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 
 # TODO
 
++ [ ] Add tests (idk how, but somehow)
++ [ ] Implement checks to let user if the tool not available, and advise on how to setup the tool
 + [X] Add ability to override args, root patterns, etc
 + [X] Add vim docs
 + [X] Add contributing content
