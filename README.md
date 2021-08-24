@@ -169,10 +169,16 @@ Below are the supported linters and formatters that are configured to run with d
 
 ## Contributing
 
-Coming Soon
+First of all, thank you for your contribution 🙂.
+
+To help create configurations start with the [diagnostic-languageserver API][dls-setup] to know how the object is
+structured for a linter or a formatter. Also check out the [wiki][dls-wiki] to see examples. Finally, check out the
+configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
+they are implemented.
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
+[dls-wiki]: https://github.com/iamcco/diagnostic-languageserver/wiki
 [lsp]: https://neovim.io/doc/user/lsp.html
 [packer]: https://github.com/wbthomason/packer.nvim
 
