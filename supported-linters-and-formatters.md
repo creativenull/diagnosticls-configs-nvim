@@ -237,3 +237,27 @@ local xo_fmt = require 'diagnosticls-configs.formatters.xo_fmt'
 ```lua
 local vint = require 'diagnosticls-configs.linters.vint' -- default
 ```
+[//]: # (Linters/Formatters list)
+[autopep8]: https://github.com/hhatto/autopep8
+[black]: https://github.com/psf/black
+[eslint]: https://github.com/eslint/eslint
+[flake]: https://github.com/PyCQA/flake8
+[gofumpt]: https://github.com/mvdan/gofumpt
+[golangci_lint]: https://github.com/golangci/golangci-lint
+[phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
+[phpstan]: https://github.com/phpstan/phpstan
+[prettier]: https://github.com/prettier/prettier
+[prettier_eslint]: https://github.com/prettier/prettier-eslint
+[prettier_standard]: https://github.com/sheerun/prettier-standard
+[psalm]: https://github.com/vimeo/psalm
+[pylint]: https://github.com/PyCQA/pylint
+[reek]: https://github.com/troessner/reek
+[revive]: https://github.com/mgechev/revive
+[rubocop]: https://github.com/rubocop/rubocop
+[standard]: https://github.com/standard/standard
+[stylelint]: https://github.com/stylelint/stylelint
+[ts_standard]: https://github.com/standard/ts-standard
+[vint]: https://github.com/Vimjas/vint
+[xo]: https://github.com/xojs/xo
+[luacheck]: https://github.com/mpeterv/luacheck
+[lua-format]: https://github.com/Koihik/LuaFormatter
