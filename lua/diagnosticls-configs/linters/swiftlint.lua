@@ -6,7 +6,6 @@ return {
   debounce = 100,
   args = { 
     'lint', 
-    --'%filepath',
     '--use-stdin',
     '--quiet', 
     '--reporter', 
