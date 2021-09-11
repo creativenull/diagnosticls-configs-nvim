@@ -34,6 +34,7 @@ local diagnosticls_nvim_defaults = {
     linter = require 'diagnosticls-configs.linters.eslint',
     formatter = require 'diagnosticls-configs.formatters.prettier',
   },
+  ['swift'] = {linter = require 'diagnosticls-configs.linters.swiftlint'},
   ['typescriptreact'] = {
     linter = require 'diagnosticls-configs.linters.eslint',
     formatter = require 'diagnosticls-configs.formatters.prettier',
