@@ -14,7 +14,7 @@ return {
   parseJson = {
     line = 'line',
     column = 'character',
-    message = '${reason} [${rule_id}]',
+    message = '[swiftlint] ${reason} [${rule_id}]',
     security = 'severity',
   },
   securities = {
