@@ -118,7 +118,7 @@ local lua_format = require 'diagnosticls-configs.formatters.lua_format'
 [stylua][stylua]
 
 ```lua
-local lua_format = require 'diagnosticls-configs.formatters.stylua'
+local stylua = require 'diagnosticls-configs.formatters.stylua'
 ```
 
 ### PHP
