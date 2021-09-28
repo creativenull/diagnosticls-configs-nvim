@@ -76,13 +76,14 @@ dlsconfig.setup {
 
 A default configuration for the supported filetypes is provided but not activated by default.
 
-To activate the default configuration you can pass the `default_config` flag as true in the init function:
+To activate the default configuration you can pass the `default_config` flag as true in the init function. Below are the
+default values for init:
 
 ```lua
 dlsconfig.init {
-  -- apply default config for supported linters and formatters
-  default_config = true,
-  -- default to true, use false if you don't want to setup formatters by default
+  -- Apply default config for supported linters and formatters
+  default_config = false,
+  -- Default to true, use false if you don't want to setup formatters by default
   format = true
 }
 ```
@@ -131,8 +132,12 @@ structured for a linter or a formatter. Also check out the [wiki][dls-wiki] to s
 configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
 they are implemented.
 
+Requirements for contributing code should be linted by [`luacheck`][luacheck] and formatted with [`lua-format`][luaformat].
+
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
 [dls-wiki]: https://github.com/iamcco/diagnostic-languageserver/wiki
 [lsp]: https://neovim.io/doc/user/lsp.html
 [packer]: https://github.com/wbthomason/packer.nvim
+[luacheck]: https://github.com/mpeterv/luacheck
+[luaformat]: https://github.com/Koihik/LuaFormatter

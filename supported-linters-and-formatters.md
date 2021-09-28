@@ -1,24 +1,28 @@
 # Supported Linters and Formatters
 
-Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. Copy the
-`require` code into your `setup()` function shown above.
+Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. You can access
+the table of contents of this document on the left hand corner of the file, in github. Copy the `require` code into your
+`setup()` function shown above.
+
+Linters/Formatters labeled with __Default__ are set when `default_config` is set to `true` in the
+[`init()` configuration](https://github.com/creativenull/diagnosticls-configs-nvim#default-configuration).
 
 ### CSS/SCSS/LESS
 #### Linters
 
-[stylelint][stylelint]
+[stylelint][stylelint] (Default)
 
 ```lua
-local stylelint = require 'diagnosticls-configs.linters.stylelint' -- default
+local stylelint = require 'diagnosticls-configs.linters.stylelint'
 ```
 
 ### Go
 #### Linters
 
-[golangci_lint][golangci_lint]
+[golangci_lint][golangci_lint] (Default)
 
 ```lua
-local golangci_lint = require 'diagnosticls-configs.linters.golangci_lint' -- default
+local golangci_lint = require 'diagnosticls-configs.linters.golangci_lint'
 ```
 
 [revive][revive]
@@ -38,10 +42,10 @@ local gofumpt = require 'diagnosticls-configs.formatters.gofumpt'
 ### JavaScript
 #### Linters
 
-[eslint][eslint]
+[eslint][eslint] (Default)
 
 ```lua
-local eslint = require 'diagnosticls-configs.linters.eslint' -- deflaut
+local eslint = require 'diagnosticls-configs.linters.eslint'
 ```
 
 [standard][standard]
@@ -57,6 +61,12 @@ local xo = require 'diagnosticls-configs.linters.xo'
 ```
 
 #### Formatters
+
+[prettier][prettier] (Default)
+
+```lua
+local prettier = require 'diagnosticls-configs.formatters.prettier'
+```
 
 [eslint_fmt][eslint]
 
@@ -76,12 +86,6 @@ local prettier_eslint = require 'diagnosticls-configs.formatters.prettier_eslint
 local prettier_standard = require 'diagnosticls-configs.formatters.prettier_standard'
 ```
 
-[prettier][prettier]
-
-```lua
-local prettier = require 'diagnosticls-configs.formatters.prettier' -- default
-```
-
 [standard_fmt][standard]
 
 ```lua
@@ -97,27 +101,33 @@ local xo_fmt = require 'diagnosticls-configs.formatters.xo_fmt'
 ### Lua
 #### Linters
 
-[luacheck][luacheck]
+[luacheck][luacheck] (Default)
 
 ```lua
-local luacheck = require 'diagnosticls-configs.linters.luacheck' -- default
+local luacheck = require 'diagnosticls-configs.linters.luacheck'
 ```
 
 #### Formatters
 
-[lua-format][lua-format]
+[lua-format][lua-format] (Default)
 
 ```lua
-local lua_format = require 'diagnosticls-configs.formatters.lua_format' --default
+local lua_format = require 'diagnosticls-configs.formatters.lua_format'
+```
+
+[stylua][stylua]
+
+```lua
+local lua_format = require 'diagnosticls-configs.formatters.stylua'
 ```
 
 ### PHP
 #### Linters
 
-[phpcs][phpcs]
+[phpcs][phpcs] (Default)
 
 ```lua
-local phpcs = require 'diagnosticls-configs.linters.phpcs' -- default
+local phpcs = require 'diagnosticls-configs.linters.phpcs'
 ```
 
 [phpstan][phpstan]
@@ -135,10 +145,10 @@ local psalm = require 'diagnosticls-configs.linters.psalm'
 ### Python
 #### Linters
 
-[flake][flake]
+[flake][flake] (Default)
 
 ```lua
-local flake = require 'diagnosticls-configs.linters.flake' -- default
+local flake = require 'diagnosticls-configs.linters.flake'
 ```
 
 [pylint][pylint]
@@ -149,10 +159,10 @@ local pylint = require 'diagnosticls-configs.linters.pylint'
 
 #### Formatters
 
-[autopep8][autopep8]
+[autopep8][autopep8] (Default)
 
 ```lua
-local autopep8 = require 'diagnosticls-configs.formatters.autopep8' -- default
+local autopep8 = require 'diagnosticls-configs.formatters.autopep8'
 ```
 
 [black][black]
@@ -164,10 +174,10 @@ local black = require 'diagnosticls-configs.formatters.black'
 ### Ruby
 #### Linters
 
-[reek][reek]
+[reek][reek] (Default)
 
 ```lua
-local reek = require 'diagnosticls-configs.linters.reek' -- default
+local reek = require 'diagnosticls-configs.linters.reek'
 ```
 
 [rubocop][rubocop]
@@ -179,10 +189,10 @@ local rubocop = require 'diagnosticls-configs.linters.rubocop'
 ### TypeScript
 #### Linters
 
-[eslint][eslint]
+[eslint][eslint] (Default)
 
 ```lua
-local eslint = require 'diagnosticls-configs.linters.eslint' -- default
+local eslint = require 'diagnosticls-configs.linters.eslint'
 ```
 
 [ts_standard][ts_standard]
@@ -199,6 +209,12 @@ local xo = require 'diagnosticls-configs.linters.xo'
 
 #### Formatters
 
+[prettier][prettier] (Default)
+
+```lua
+local prettier = require 'diagnosticls-configs.formatters.prettier'
+```
+
 [eslint_fmt][eslint]
 
 ```lua
@@ -209,12 +225,6 @@ local eslint_fmt = require 'diagnosticls-configs.formatters.eslint_fmt'
 
 ```lua
 local prettier_eslint = require 'diagnosticls-configs.formatters.prettier_eslint'
-```
-
-[prettier][prettier]
-
-```lua
-local prettier = require 'diagnosticls-configs.formatters.prettier' -- default
 ```
 
 [ts_standard_fmt][ts_standard]
@@ -232,11 +242,12 @@ local xo_fmt = require 'diagnosticls-configs.formatters.xo_fmt'
 ### Vim
 #### Linters
 
-[vint][vint]
+[vint][vint] (Default)
 
 ```lua
-local vint = require 'diagnosticls-configs.linters.vint' -- default
+local vint = require 'diagnosticls-configs.linters.vint'
 ```
+
 [//]: # (Linters/Formatters list)
 [autopep8]: https://github.com/hhatto/autopep8
 [black]: https://github.com/psf/black
@@ -261,3 +272,4 @@ local vint = require 'diagnosticls-configs.linters.vint' -- default
 [xo]: https://github.com/xojs/xo
 [luacheck]: https://github.com/mpeterv/luacheck
 [lua-format]: https://github.com/Koihik/LuaFormatter
+[stylua]: https://github.com/JohnnyMorganz/StyLua
