@@ -14,6 +14,6 @@ return {
     message = '[xo] ${message} [${ruleId}]',
     security = 'severity',
   },
-  securities = {[2] = 'error', [1] = 'warning'},
+  securities = {['1'] = 'warning', ['2'] = 'error'},
   rootPatterns = {'.git', '.eslintignore'},
 }

@@ -14,7 +14,7 @@ return {
     message = '[eslint] ${message} [${ruleId}]',
     security = 'severity',
   },
-  securities = {[2] = 'error', [1] = 'warning'},
+  securities = {['1'] = 'warning', ['2'] = 'error'},
   rootPatterns = {
     '.eslintrc',
     '.eslintrc.cjs',
