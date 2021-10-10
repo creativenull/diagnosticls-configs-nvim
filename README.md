@@ -1,11 +1,11 @@
-# diagnosticls-configs-nvim (Status: Alpha)
+# diagnosticls-configs-nvim (Status: Stable-ish)
 
 > BREAKING CHANGES: This plugin name has changed from `diagnosticls-nvim` to `diagnosticls-configs-nvim`. Please update
   your plugin manager with the new name, along with your configurations moving the `require()` from
   `require('diagnosticls-nvim')` to `require('diagnosticls-configs')`
 
 A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
-Have a look at the currently [supported linters/formatters](#supported-linters-and-formatters) below.
+Have a look at the currently [supported linters/formatters](supported-linters-and-formatters.md).
 
 # TODO
 
@@ -19,9 +19,9 @@ Have a look at the currently [supported linters/formatters](#supported-linters-a
 ## Installation
 ### Requirements
 
-+ Neovim v0.5 and up
-+ Diagnostic Language Server, globally installed: `npm i -g diagnostic-languageserver`
-+ `nvim-lspconfig`
++ [Neovim v0.5 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
++ [nvim-lspconfig][lspconfig] plugin
++ [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
 
 You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin. Using
 [packer.nvim][packer] as an example:
@@ -125,7 +125,7 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 
 ## Contributing
 
-First of all, thank you for your contribution 🙂.
+First of all, thank you for your contribution 🙂
 
 To help create configurations start with the [diagnostic-languageserver API][dls-setup] to know how the object is
 structured for a linter or a formatter. Also check out the [wiki][dls-wiki] to see examples. Finally, check out the
@@ -134,6 +134,13 @@ they are implemented.
 
 Requirements for contributing code should be linted by [`luacheck`][luacheck] and formatted with [`lua-format`][luaformat].
 
+## Credits
+
+Credits goes to the following repos for inspiration:
+
++ [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) for example configs in json format
++ [ale](https://github.com/dense-analysis/ale) for a vibrate list of supported linters/formatters to look through
+
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
 [dls-wiki]: https://github.com/iamcco/diagnostic-languageserver/wiki
@@ -141,3 +148,5 @@ Requirements for contributing code should be linted by [`luacheck`][luacheck] an
 [packer]: https://github.com/wbthomason/packer.nvim
 [luacheck]: https://github.com/mpeterv/luacheck
 [luaformat]: https://github.com/Koihik/LuaFormatter
+[lspconfig]: https://github.com/neovim/nvim-lspconfig
+[neovim]: https://github.com/neovim/neovim
