@@ -2,7 +2,7 @@
 
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. You can access
 the table of contents of this document on the left hand corner of the file, in github. Copy the `require` code into your
-`setup()` function shown above.
+`setup()` function.
 
 Linters/Formatters labeled with __Default__ are set when `default_config` is set to `true` in the
 [`init()` configuration](https://github.com/creativenull/diagnosticls-configs-nvim#default-configuration).
