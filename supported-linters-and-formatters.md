@@ -74,6 +74,12 @@ local prettier = require 'diagnosticls-configs.formatters.prettier'
 local eslint_fmt = require 'diagnosticls-configs.formatters.eslint_fmt'
 ```
 
+[eslint_d_fmt][eslint_d]
+
+```lua
+local eslint_d_fmt = require 'diagnosticls-configs.formatters.eslint_d_fmt'
+```
+
 [prettier_eslint][prettier_eslint]
 
 ```lua
@@ -252,6 +258,7 @@ local vint = require 'diagnosticls-configs.linters.vint'
 [autopep8]: https://github.com/hhatto/autopep8
 [black]: https://github.com/psf/black
 [eslint]: https://github.com/eslint/eslint
+[eslint_d]: https://github.com/mantoni/eslint_d.js
 [flake]: https://github.com/PyCQA/flake8
 [gofumpt]: https://github.com/mvdan/gofumpt
 [golangci_lint]: https://github.com/golangci/golangci-lint
