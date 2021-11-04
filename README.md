@@ -1,9 +1,5 @@
 # diagnosticls-configs-nvim (Status: Stable-ish)
 
-> BREAKING CHANGES: This plugin name has changed from `diagnosticls-nvim` to `diagnosticls-configs-nvim`. Please update
-  your plugin manager with the new name, along with your configurations moving the `require()` from
-  `require('diagnosticls-nvim')` to `require('diagnosticls-configs')`
-
 A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
 Have a look at the currently [supported linters/formatters](supported-linters-and-formatters.md).
 
@@ -132,7 +128,7 @@ structured for a linter or a formatter. Also check out the [wiki][dls-wiki] to s
 configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
 they are implemented.
 
-Requirements for contributing code should be linted by [`luacheck`][luacheck] and formatted with [`lua-format`][luaformat].
+Requirements for contributing code should be linted by [`luacheck`][luacheck] and formatted with [`stylua`][stylua].
 
 ## Credits
 
@@ -147,6 +143,6 @@ Credits goes to the following repos for inspiration:
 [lsp]: https://neovim.io/doc/user/lsp.html
 [packer]: https://github.com/wbthomason/packer.nvim
 [luacheck]: https://github.com/mpeterv/luacheck
-[luaformat]: https://github.com/Koihik/LuaFormatter
+[stylua]: https://github.com/JohnnyMorganz/StyLua
 [lspconfig]: https://github.com/neovim/nvim-lspconfig
 [neovim]: https://github.com/neovim/neovim
