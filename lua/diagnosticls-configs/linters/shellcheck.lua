@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'shellcheck',

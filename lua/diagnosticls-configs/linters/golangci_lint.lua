@@ -1,9 +1,9 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'golangci_lint',
   command = fs.get_executable('golangci-lint'),
-  args = {'run', '--out-format', 'json'},
+  args = { 'run', '--out-format', 'json' },
   debounce = 100,
   parseJson = {
     sourceNameFilter = true,
@@ -13,5 +13,5 @@ return {
     column = 'Pos.Column',
     message = '[golangci_lint] ${Text} [${FromLinter}]',
   },
-  rootPatterns = {'.git', 'go.mod'},
+  rootPatterns = { '.git', 'go.mod' },
 }

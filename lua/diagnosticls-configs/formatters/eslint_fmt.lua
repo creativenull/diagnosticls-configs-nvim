@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 -- TODO: Find a way to implement this with stdio, if possible
 return {

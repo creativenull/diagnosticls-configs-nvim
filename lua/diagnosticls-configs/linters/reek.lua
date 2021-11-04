@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'reek',
@@ -18,5 +18,5 @@ return {
     endLine = 'lines[1]',
     message = '[reek] [${smell_type}] ${message}',
   },
-  securities = {undefined = 'info'},
+  securities = { undefined = 'info' },
 }

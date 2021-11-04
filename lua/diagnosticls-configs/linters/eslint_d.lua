@@ -1,10 +1,10 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'eslint_d',
   command = fs.get_executable('eslint_d', 'node'),
   debounce = 100,
-  args = {'--stdin', '--stdin-filename', '%filepath', '--format', 'json'},
+  args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
   parseJson = {
     errorsRoot = '[0].messages',
     line = 'line',
@@ -14,7 +14,7 @@ return {
     message = '[eslint] ${message} [${ruleId}]',
     security = 'severity',
   },
-  securities = {['1'] = 'warning', ['2'] = 'error'},
+  securities = { ['1'] = 'warning', ['2'] = 'error' },
   rootPatterns = {
     '.eslintrc',
     '.eslintrc.cjs',

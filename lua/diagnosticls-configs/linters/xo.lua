@@ -1,10 +1,10 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'xo',
   command = fs.get_executable('xo', 'node'),
   debounce = 100,
-  args = {'--stdin', '--stdin-filename', '%filepath', '--reporter', 'json'},
+  args = { '--stdin', '--stdin-filename', '%filepath', '--reporter', 'json' },
   parseJson = {
     errorsRoot = '[0].messages',
     line = 'line',
@@ -14,6 +14,6 @@ return {
     message = '[xo] ${message} [${ruleId}]',
     security = 'severity',
   },
-  securities = {['1'] = 'warning', ['2'] = 'error'},
-  rootPatterns = {'.git', '.eslintignore'},
+  securities = { ['1'] = 'warning', ['2'] = 'error' },
+  rootPatterns = { '.git', '.eslintignore' },
 }

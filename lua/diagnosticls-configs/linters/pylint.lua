@@ -1,4 +1,4 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'pylint',
@@ -16,7 +16,7 @@ return {
   formatLines = 1,
   formatPattern = {
     [[^(\d+?):(\d+?):([a-z]+?):(.*)$]],
-    {line = 1, column = 2, security = 3, message = {'[pylint] ', 4}},
+    { line = 1, column = 2, security = 3, message = { '[pylint] ', 4 } },
   },
   securities = {
     informational = 'hint',
@@ -26,5 +26,5 @@ return {
     error = 'error',
     fatal = 'error',
   },
-  rootPatterns = {'.git', 'pyproject.toml', 'setup.py'},
+  rootPatterns = { '.git', 'pyproject.toml', 'setup.py' },
 }

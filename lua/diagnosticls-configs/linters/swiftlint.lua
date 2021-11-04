@@ -1,14 +1,14 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'swiftlint',
   command = fs.get_executable('swiftlint'),
   debounce = 100,
-  args = { 
-    'lint', 
+  args = {
+    'lint',
     '--use-stdin',
-    '--quiet', 
-    '--reporter', 
+    '--quiet',
+    '--reporter',
     'json',
   },
   parseJson = {

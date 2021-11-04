@@ -1,9 +1,9 @@
-local fs = require 'diagnosticls-configs.fs'
+local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'cpplint',
   command = fs.get_executable('cpplint'),
-  args = {'%file'},
+  args = { '%file' },
   debounce = 100,
   isStderr = true,
   isStdout = false,
@@ -11,7 +11,7 @@ return {
   offsetColumn = 0,
   formatPattern = {
     [[^[^:]+:(\d+):(\d+)?\s+([^:]+?)\s\[(\d)\]$]],
-    {line = 1, column = 2, message = {'[cpplint] ', 3}, security = 4},
+    { line = 1, column = 2, message = { '[cpplint] ', 3 }, security = 4 },
   },
   securities = {
     [1] = 'info',
@@ -20,5 +20,5 @@ return {
     [4] = 'error',
     [5] = 'error',
   },
-  rootPatterns = {'.git'},
+  rootPatterns = { '.git' },
 }
