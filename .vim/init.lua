@@ -5,7 +5,7 @@ if ok then
   dls.setup({
     lua = {
       linter = require('diagnosticls-configs.linters.luacheck'),
-      formatter = require('diagnosticls-configs.formatters.lua_format'),
+      formatter = require('diagnosticls-configs.formatters.stylua'),
     },
   })
 end
