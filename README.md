@@ -79,7 +79,7 @@ default values for init:
 ```lua
 dlsconfig.init {
   -- Use a list of default configurations
-  -- set by this plugin to be used
+  -- set by this plugin
   -- (Default: false)
   default_config = false,
 
