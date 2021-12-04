@@ -3,7 +3,8 @@
 ## Default Configurations
 
 Here is a list of languages that are automatically set and configured when `default_config` is set. For information
-on how to set `default_config` check the docs: [`:help diagnosticls-configs-defaults`](https://github.com/creativenull/diagnosticls-configs-nvim#default-configuration)
+on how to set `default_config` check the docs:
+[`:help diagnosticls-configs-defaults`](https://github.com/creativenull/diagnosticls-configs-nvim#default-configuration).
 
 | **Filetype** | **Default Linter** | **Default Formatter** |
 |--------------|--------------------|-----------------------|
@@ -23,7 +24,8 @@ on how to set `default_config` check the docs: [`:help diagnosticls-configs-defa
 
 Below are the supported linters and formatters that are configured to run with diagnostic-languageserver. You can access
 the table of contents of this document on the left hand corner of the file, in github. Copy the `require` code into your
-`setup()` function (See example code: [`:help diagnosticls-configs-setup`](https://github.com/creativenull/diagnosticls-configs-nvim#setup).
+`setup()` function (See example code:
+[`:help diagnosticls-configs-setup`](https://github.com/creativenull/diagnosticls-configs-nvim#setup)).
 
 ### CSS/SASS/SCSS/LESS
 #### Linters
