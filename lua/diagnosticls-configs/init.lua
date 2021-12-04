@@ -41,11 +41,6 @@ end
 ---@param filetypes table
 ---@return nil
 M.setup = function(filetypes)
-  if vim.tbl_isempty(filetypes) then
-    vim.api.nvim_err_writeln('[diagnosticls-configs] Provided setup() is invalid')
-    return
-  end
-
   -- Set some defaults but priority is given to
   -- filetypes from argument first
   if diagnosticls_setup.default_config then
@@ -55,6 +50,11 @@ M.setup = function(filetypes)
     else
       filetypes = vim.tbl_extend('force', default_filetypes, filetypes)
     end
+  end
+
+  if vim.tbl_isempty(filetypes) then
+    vim.api.nvim_err_writeln('[diagnosticls-configs] Provided setup() is invalid')
+    return
   end
 
   for filetype, configs in pairs(filetypes) do
