@@ -1,120 +1,83 @@
-local lspconfig = require('lspconfig')
-local M = {}
-
-local diagnosticls_nvim_lsp_opts = {
-  root_dir = require('lspconfig').util.root_pattern('.git'),
-  default_config = false,
-  format = true,
-}
-
-local diagnosticls_nvim_defaults = {
-  ['css'] = { linter = require('diagnosticls-configs.linters.stylelint') },
-  ['go'] = { linter = require('diagnosticls-configs.linters.golangci_lint') },
-  ['html'] = { linter = require('diagnosticls-configs.linters.stylelint') },
-  ['javascript'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
-  },
-  ['javascriptreact'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
-  },
-  ['less'] = { linter = require('diagnosticls-configs.linters.stylelint') },
-  ['lua'] = {
-    linter = require('diagnosticls-configs.linters.luacheck'),
-    formatter = require('diagnosticls-configs.formatters.lua_format'),
-  },
-  ['php'] = { linter = require('diagnosticls-configs.linters.phpcs') },
-  ['python'] = {
-    linter = require('diagnosticls-configs.linters.flake8'),
-    formatter = require('diagnosticls-configs.formatters.autopep8'),
-  },
-  ['ruby'] = { linter = require('diagnosticls-configs.linters.reek') },
-  ['typescript'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
-  },
-  ['swift'] = { linter = require('diagnosticls-configs.linters.swiftlint') },
-  ['typescriptreact'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
-  },
-  ['vim'] = { linter = require('diagnosticls-configs.linters.vint') },
-}
-
--- Initialize lsp options to pass thru diagnosticls
--- @param lsp_opts table
--- @return void
-M.init = function(lsp_opts)
-  diagnosticls_nvim_lsp_opts = vim.tbl_extend('force', diagnosticls_nvim_lsp_opts, lsp_opts)
+local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
+if not lspconfig_ok then
+  vim.api.nvim_err_writeln('[diagnosticls-configs] `nvim-lspconfig` plugin not installed!')
+  vim.api.nvim_err_writeln('Please install via your plugin manager.')
+  return
 end
 
--- Setup the linter and/or formatter based on the filetype
--- @param opts table
--- @return void
-M.setup = function(opts)
-  local filetypes = {}
-  local lsp_opts = diagnosticls_nvim_lsp_opts
-  local setup_opts = {
+local add_linter = require('diagnosticls-configs.linter').add_linter
+local add_linters = require('diagnosticls-configs.linter').add_linters
+local add_formatter = require('diagnosticls-configs.formatter').add_formatter
+local add_formatters = require('diagnosticls-configs.formatter').add_formatters
+local M = {}
+
+---@class DiagnosticLSConfig
+local diagnosticls_setup = {
+  -- Plugin Options
+  format = true,
+  default_config = false,
+
+  -- LSP Setup
+  root_dir = lspconfig.util.root_pattern('.git'),
+  filetypes = {},
+  init_options = {
     filetypes = {},
-    init_options = {
-      filetypes = {},
-      formatFiletypes = {},
-      linters = {},
-      formatters = {},
-    },
-  }
+    formatFiletypes = {},
+    linters = {},
+    formatters = {},
+  },
+}
 
-  -- Extend from setup()
-  setup_opts = vim.tbl_extend('force', lsp_opts, setup_opts)
+---Initialize lsp options to pass thru diagnosticls
+---@param user_diagnosticls_setup DiagnosticLSConfig
+---@return nil
+M.init = function(user_diagnosticls_setup)
+  if user_diagnosticls_setup ~= nil or not vim.tbl_isempty(user_diagnosticls_setup) then
+    diagnosticls_setup = vim.tbl_extend('force', diagnosticls_setup, user_diagnosticls_setup)
+  end
+end
 
-  if setup_opts.default_config then
-    opts = vim.tbl_extend('force', diagnosticls_nvim_defaults, opts)
+---Setup linter(s) and/or formatter(s) given by filetypes
+---@param filetypes table
+---@return nil
+M.setup = function(filetypes)
+  -- Set some defaults but priority is given to
+  -- filetypes from argument first
+  if diagnosticls_setup.default_config then
+    local default_filetypes = require('diagnosticls-configs.defaults')
+    if filetypes == nil then
+      filetypes = default_filetypes
+    else
+      filetypes = vim.tbl_extend('force', default_filetypes, filetypes)
+    end
   end
 
-  for filetype, config_types in pairs(opts) do
-    -- Start adding to opts
-    table.insert(filetypes, filetype)
+  if vim.tbl_isempty(filetypes) then
+    vim.api.nvim_err_writeln('[diagnosticls-configs] Provided setup() is invalid')
+    return
+  end
 
-    for config_type, config in pairs(config_types) do
-      if config_type == 'linter' then
-        if vim.tbl_islist(config) then
-          local sources = {}
-          for _, config_source in pairs(config) do
-            local source_name = config_source['sourceName']
-            table.insert(sources, source_name)
-            setup_opts.init_options.linters[source_name] = config_source
-          end
-          setup_opts.init_options.filetypes[filetype] = sources
-        else
-          local source_name = config['sourceName']
-          setup_opts.init_options.linters[source_name] = config
-          setup_opts.init_options.filetypes[filetype] = source_name
-        end
+  for filetype, configs in pairs(filetypes) do
+    if configs.linter ~= nil then
+      if vim.tbl_islist(configs.linter) and not vim.tbl_isempty(configs.linter) then
+        add_linters(diagnosticls_setup, filetype, configs.linter)
+      else
+        add_linter(diagnosticls_setup, filetype, configs.linter)
       end
+    end
 
-      if config_type == 'formatter' and lsp_opts.format then
-        -- diagnosticls formatters don't have the sourceName key
-        -- so this is a custom key used only for this plugin
-        if vim.tbl_islist(config) then
-          local sources = {}
-          for _, config_source in pairs(config) do
-            local source_name = config_source['sourceName']
-            table.insert(sources, source_name)
-            setup_opts.init_options.formatters[source_name] = config_source
-          end
-          setup_opts.init_options.formatFiletypes[filetype] = sources
-        else
-          local source_name = config['sourceName']
-          setup_opts.init_options.formatters[source_name] = config
-          setup_opts.init_options.formatFiletypes[filetype] = source_name
-        end
+    if configs.formatter ~= nil and diagnosticls_setup.format then
+      if vim.tbl_islist(configs.formatter) and not vim.tbl_isempty(configs.formatter) then
+        add_formatters(diagnosticls_setup, filetype, configs.formatter)
+      else
+        add_formatter(diagnosticls_setup, filetype, configs.formatter)
       end
     end
   end
 
-  setup_opts.filetypes = filetypes
-  lspconfig.diagnosticls.setup(setup_opts)
+  diagnosticls_setup.filetypes = vim.tbl_keys(filetypes)
+
+  lspconfig.diagnosticls.setup(diagnosticls_setup)
 end
 
 return M
