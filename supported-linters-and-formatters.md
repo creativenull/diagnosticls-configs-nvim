@@ -6,6 +6,7 @@ Here is a list of languages that are automatically set and configured when `defa
 on how to set `default_config` check the docs: [`:help diagnosticls-configs-defaults`](https://github.com/creativenull/diagnosticls-configs-nvim#default-configuration)
 
 | **Filetype** | **Default Linter** | **Default Formatter** |
+|--------------|--------------------|-----------------------|
 | CSS/SASS/SCSS/LESS | [`stylelint`](#css-sass-scss-less) | |
 | Go | [`golangci_lint`](#go) | |
 | HTML | [`stylelint`](#html) | |
