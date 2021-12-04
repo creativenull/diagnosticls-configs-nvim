@@ -243,6 +243,15 @@ local reek = require 'diagnosticls-configs.linters.reek'
 local rubocop = require 'diagnosticls-configs.linters.rubocop'
 ```
 
+### Swift
+#### Linters
+
+[swiftlint][swiftlint]
+
+```lua
+local swiftlint = require 'diagnosticls-configs.linters.swiftlint'
+```
+
 ### TypeScript
 #### Linters
 
@@ -331,3 +340,4 @@ local vint = require 'diagnosticls-configs.linters.vint'
 [luacheck]: https://github.com/mpeterv/luacheck
 [lua-format]: https://github.com/Koihik/LuaFormatter
 [stylua]: https://github.com/JohnnyMorganz/StyLua
+[swiftlint]: https://github.com/realm/SwiftLint
