@@ -7,9 +7,9 @@ on how to set `default_config` check the docs: [`:help diagnosticls-configs-defa
 
 | **Filetype** | **Default Linter** | **Default Formatter** |
 |--------------|--------------------|-----------------------|
-| CSS/SASS/SCSS/LESS | [`stylelint`](#css-sass-scss-less) | |
+| CSS/SASS/SCSS/LESS | [`stylelint`](#csssassscssless) | [`prettier`](#csssassscssless) |
 | Go | [`golangci_lint`](#go) | |
-| HTML | [`stylelint`](#html) | |
+| HTML | [`stylelint`](#html) | [`prettier`](#html) |
 | JavaScript/JSX | [`eslint`](#javascript) | [`prettier`](#javascript) |
 | Lua | [`luacheck`](#lua) | [`stylua`](#lua) |
 | PHP | [`phpcs`](#php) | [`phpcbf`](#php) |
@@ -34,6 +34,14 @@ the table of contents of this document on the left hand corner of the file, in g
 local stylelint = require 'diagnosticls-configs.linters.stylelint'
 ```
 
+#### Formatters
+
+[prettier][prettier]
+
+```lua
+local prettier = require 'diagnosticls-configs.formatters.prettier'
+```
+
 ### Go
 #### Linters
 
@@ -55,6 +63,23 @@ local revive = require 'diagnosticls-configs.linters.revive'
 
 ```lua
 local gofumpt = require 'diagnosticls-configs.formatters.gofumpt'
+```
+
+### HTML
+#### Linters
+
+[stylelint][stylelint]
+
+```lua
+local stylelint = require 'diagnosticls-configs.linters.stylelint'
+```
+
+#### Formatters
+
+[prettier][prettier]
+
+```lua
+local prettier = require 'diagnosticls-configs.formatters.prettier'
 ```
 
 ### JavaScript
