@@ -96,7 +96,8 @@ You will still need to call the `setup()` after `init()` for the changes to take
 configurations to `setup()` as show in the [Setup section](#setup) and it will override any default configuration set
 by `default_config` if it's for the same filetype.
 
-NOTE: This does not imply that it will "format on save". You still need to setup that in your lsp on_attach handler.
+NOTE: For `format` option it does not imply that it will "format on save". You still need to setup that in your lsp
+on_attach handler.
 
 ## Advanced Configuration
 
