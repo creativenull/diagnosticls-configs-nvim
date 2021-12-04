@@ -1,5 +1,7 @@
 # Supported Linters and Formatters
 
+Please create an Pull Request if you see any mismatched documentation or typos.
+
 ## Default Configurations
 
 Here is a list of languages that are automatically set and configured when `default_config` is set. For information
