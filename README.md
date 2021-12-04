@@ -1,7 +1,8 @@
-# diagnosticls-configs-nvim (Status: Stable-ish)
+# diagnosticls-configs-nvim
 
-A collection of linters and formatters configured for [diagnostic language server][dls] to work with [nvim-lsp][lsp].
-Have a look at the currently [supported linters/formatters](supported-linters-and-formatters.md).
+An unofficial collection of linters and formatters configured for [diagnostic language server][dls] to work with
+[nvim-lsp][lsp]. Have a look at the currently
+[Supported Linter & Formatter Configurations](supported-linters-and-formatters.md).
 
 # TODO
 
@@ -77,20 +78,25 @@ default values for init:
 
 ```lua
 dlsconfig.init {
-  -- Apply default config for supported linters and formatters
+  -- Use a list of default configurations
+  -- set by this plugin to be used
+  -- (Default: false)
   default_config = false,
-  -- Default to true, use false if you don't want to setup formatters by default
-  format = true
+
+  -- Set to false if formatting is not needed at all,
+  -- any formatter provided will be ignored
+  -- (Default: true)
+  format = true,
 }
+
+dlsconfig.setup()
 ```
 
-You still need to call the setup function.
+You will still need to call the `setup()` after `init()` for the changes to take effect. You can still pass your custom
+configurations to `setup()` as show in the [Setup section](#setup) and it will override any default configuration set
+by `default_config` if it's for the same filetype.
 
-If you wish to overwrite any of the default configuration
-you can simply pass the parameters as described in the previous "Setup" section.
-
-NOTE: The default formatters configuration won't enable "format on save".
-You still need to setup that on your lsp on_attach handler.
+NOTE: This does not imply that it will "format on save". You still need to setup that in your lsp on_attach handler.
 
 ## Advanced Configuration
 
@@ -121,21 +127,23 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 
 ## Contributing
 
-First of all, thank you for your contribution 🙂
+First of all, thank you for your contribution 🙂!
 
 To help create configurations start with the [diagnostic-languageserver API][dls-setup] to know how the object is
-structured for a linter or a formatter. Also check out the [wiki][dls-wiki] to see examples. Finally, check out the
+structured for a linter or a formatter. Also [check out the wiki][dls-wiki] to see some examples. Finally, check out the
 configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
 they are implemented.
 
-Requirements for contributing code should be linted by [`luacheck`][luacheck] and formatted with [`stylua`][stylua].
+Tools required for linting and formatting for this project (which are also supported by this plugin):
++ [`luacheck`][luacheck] - Linting
++ [`stylua`][stylua] - Formatting
 
 ## Credits
 
 Credits goes to the following repos for inspiration:
 
-+ [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) for example configs in json format
-+ [ale](https://github.com/dense-analysis/ale) for a vibrate list of supported linters/formatters to look through
++ [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) - for example configs in json format
++ [ale](https://github.com/dense-analysis/ale) - for a vibrate list of supported linters/formatters to look through and implement
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
