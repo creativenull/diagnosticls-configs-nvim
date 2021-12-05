@@ -6,8 +6,8 @@ An unofficial collection of linters and formatters configured for [diagnostic la
 
 # TODO
 
-+ [ ] Add tests (idk how, but somehow)
-+ [ ] Implement checks to let user if the tool not available, and advise on how to setup the tool
++ [ ] Use `:checkhealth` to display status of linters/formatters registered with plugin
++ [ ] Tests with busted/vusted or plenary
 + [X] Add ability to override args, root patterns, etc
 + [X] Add vim docs
 + [X] Add contributing content
