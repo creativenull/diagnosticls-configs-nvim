@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'ts_standard',
-  command = fs.get_executable('ts-standard', 'node'),
+  command = fs.executable('ts-standard', fs.Scope.NODE),
   debounce = 100,
   args = { '--stdin', '--stdin-filename', '%filepath', '--verbose' },
   offsetLine = 0,

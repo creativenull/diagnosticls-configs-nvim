@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'rubocop',
-  command = fs.get_executable('bundle'),
+  command = fs.executable('bundle', fs.Scope.BUNDLE),
   debounce = 100,
   args = {
     'exec',

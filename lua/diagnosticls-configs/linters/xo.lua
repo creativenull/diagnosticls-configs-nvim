@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'xo',
-  command = fs.get_executable('xo', 'node'),
+  command = fs.executable('xo', fs.Scope.NODE),
   debounce = 100,
   args = { '--stdin', '--stdin-filename', '%filepath', '--reporter', 'json' },
   parseJson = {

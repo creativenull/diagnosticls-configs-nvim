@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'phpcs',
-  command = fs.get_executable('phpcs', 'php'),
+  command = fs.executable('phpcs', fs.Scope.COMPOSER),
   debounce = 100,
   args = { '--standard=PSR2', '--report=emacs', '-s', '-' },
   offsetLine = 0,

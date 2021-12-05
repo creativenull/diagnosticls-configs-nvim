@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'standard',
-  command = fs.get_executable('standard', 'node'),
+  command = fs.executable('standard', fs.Scope.NODE),
   debounce = 100,
   args = { '--stdin' },
   offsetLine = 0,

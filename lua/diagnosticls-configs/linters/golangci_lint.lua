@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'golangci_lint',
-  command = fs.get_executable('golangci-lint'),
+  command = fs.executable('golangci-lint'),
   args = { 'run', '--out-format', 'json' },
   debounce = 100,
   parseJson = {

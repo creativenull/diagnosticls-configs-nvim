@@ -4,7 +4,7 @@ local fs = require('diagnosticls-configs.fs')
 -- This may or may not work? May want to start implementing some tests
 return {
   sourceName = 'flow',
-  command = fs.get_executable('flow', 'node'),
+  command = fs.executable('flow', fs.Scope.NODE),
   debounce = 100,
   args = { 'check-contents', '--json', '<', '%filepath' },
   parseJson = {

@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'prettier',
-  command = fs.get_executable('prettier', 'node'),
+  command = fs.executable('prettier', fs.Scope.NODE),
   args = { '--stdin', '--stdin-filepath', '%filepath' },
   rootPatterns = {
     '.prettierrc',

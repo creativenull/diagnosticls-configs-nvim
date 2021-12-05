@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'psalm',
-  command = fs.get_executable('psalm', 'php'),
+  command = fs.executable('psalm', fs.Scope.COMPOSER),
   args = { '--output-format=emacs', '--no-progress' },
   debounce = 100,
   offsetLine = 0,

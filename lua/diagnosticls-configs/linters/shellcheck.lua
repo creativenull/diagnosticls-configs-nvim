@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'shellcheck',
-  command = fs.get_executable('shellcheck'),
+  command = fs.executable('shellcheck'),
   debounce = 100,
   args = { '--format', 'json1', '-' },
   parseJson = {

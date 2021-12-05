@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'stylelint',
-  command = fs.get_executable('stylelint', 'node'),
+  command = fs.executable('stylelint', fs.Scope.NODE),
   debounce = 100,
   args = { '--formatter', 'json', '--stdin-filename', '%filepath' },
   parseJson = {

@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'languagetool',
-  command = fs.get_executable('languagetool'),
+  command = fs.executable('languagetool'),
   debounce = 200,
   args = { '-' },
   offsetLine = 0,

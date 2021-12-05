@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'revive',
-  command = fs.get_executable('revive'),
+  command = fs.executable('revive'),
   args = { '%file' },
   debounce = 100,
   formatPattern = {

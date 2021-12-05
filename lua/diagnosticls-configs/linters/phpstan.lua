@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'phpstan',
-  command = fs.get_executable('phpstan', 'php'),
+  command = fs.executable('phpstan', fs.Scope.COMPOSER),
   args = { 'analyze', '--error-format', 'raw', '--no-progress', '%file' },
   debounce = 100,
   offsetLine = 0,

@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'swiftlint',
-  command = fs.get_executable('swiftlint'),
+  command = fs.executable('swiftlint'),
   debounce = 100,
   args = {
     'lint',

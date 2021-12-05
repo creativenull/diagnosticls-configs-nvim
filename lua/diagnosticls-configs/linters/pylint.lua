@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'pylint',
-  command = fs.get_executable('pylint'),
+  command = fs.executable('pylint'),
   args = {
     '--output-format',
     'text',

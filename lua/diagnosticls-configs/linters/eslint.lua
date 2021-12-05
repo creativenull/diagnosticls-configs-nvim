@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'eslint',
-  command = fs.get_executable('eslint', 'node'),
+  command = fs.executable('eslint', fs.Scope.NODE),
   debounce = 100,
   args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
   parseJson = {

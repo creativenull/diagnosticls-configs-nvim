@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'flake8',
-  command = fs.get_executable('flake8'),
+  command = fs.executable('flake8'),
   args = { [[--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s]], '-' },
   debounce = 100,
   offsetLine = 0,

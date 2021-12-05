@@ -3,7 +3,7 @@ local fs = require('diagnosticls-configs.fs')
 -- TODO: Find a way to implement this with stdio, if possible
 return {
   sourceName = 'eslint_fmt',
-  command = fs.get_executable('eslint', 'node'),
+  command = fs.executable('eslint', fs.Scope.NODE),
   args = {
     '--fix',
     '%file',

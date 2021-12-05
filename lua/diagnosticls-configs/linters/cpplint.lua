@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'cpplint',
-  command = fs.get_executable('cpplint'),
+  command = fs.executable('cpplint'),
   args = { '%file' },
   debounce = 100,
   isStderr = true,

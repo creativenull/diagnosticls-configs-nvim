@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'vint',
-  command = fs.get_executable('vint'),
+  command = fs.executable('vint'),
   args = { '--enable-neovim', '--json', '%tempfile' },
   debounce = 100,
   parseJson = {
