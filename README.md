@@ -1,8 +1,11 @@
 # diagnosticls-configs-nvim
 
-An unofficial collection of linters and formatters configured for [diagnostic language server][dls] to work with
-[nvim-lsp][lsp]. Have a look at the currently
-[Supported Linter & Formatter Configurations](supported-linters-and-formatters.md).
+An unofficial collection of linter and formatter configurations for [diagnostic-languageserver][dls] to work with
+builtin [nvim-lsp][lsp]. Works only for neovim >= 0.5.
+
+## Supported linters and formatters
+
+Check out [supported-linters-and-formatters.md](supported-linters-and-formatters.md)
 
 # TODO
 
@@ -121,10 +124,6 @@ dlsconfig.setup {
   }
 }
 ```
-
-## Supported linters and formatters
-
-Check out [supported-linters-and-formatters.md](supported-linters-and-formatters.md)
 
 ## Contributing
 
