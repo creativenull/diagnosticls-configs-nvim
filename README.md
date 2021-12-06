@@ -138,6 +138,12 @@ Tools required for linting and formatting for this project (which are also suppo
 + [`luacheck`][luacheck] - Linting
 + [`stylua`][stylua] - Formatting
 
+For testing, add the relevant test logic in `tests/diagnosticls-configs` and then run:
+
+```sh
+make test
+```
+
 ## Credits
 
 Credits goes to the following repos for inspiration:
