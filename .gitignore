@@ -1,1 +1,3 @@
 doc/tags
+tests/nvim-data/plugged
+tests/nvim-data/autoload
