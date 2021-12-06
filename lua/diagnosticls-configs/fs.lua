@@ -45,7 +45,7 @@ end
 ---@param name string
 ---@return string
 local get_global_exec = function(name)
-  if vim.fn.isexecutable(name) then
+  if vim.fn.executable(name) then
     return vim.fn.exepath(name)
   else
     add_checkhealth_error(name)
