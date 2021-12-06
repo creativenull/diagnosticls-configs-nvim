@@ -28,7 +28,7 @@ You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before
 
 ```lua
 use {
-  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.0' },
+  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.1' },
   requires = { 'neovim/nvim-lspconfig' }
 }
 ```
