@@ -9,7 +9,7 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 
 # TODO
 
-+ [ ] Tests with busted/vusted or plenary
++ [X] Tests with busted/vusted or plenary - using plenary test_harness
 + [X] Use `:checkhealth` to display status of linters/formatters registered with plugin
 + [X] Add ability to override args, root patterns, etc
 + [X] Add vim docs
