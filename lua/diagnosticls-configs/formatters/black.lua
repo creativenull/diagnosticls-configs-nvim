@@ -1,6 +1,8 @@
+local fs = require('diagnosticls-configs.fs')
+
 return {
   sourceName = 'black',
-  command = 'black',
+  command = fs.executable('black'),
   args = { '%filepath' },
   doesWriteToFile = true,
   rootPatterns = {
