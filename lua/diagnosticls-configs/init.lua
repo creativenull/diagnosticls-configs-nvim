@@ -32,7 +32,7 @@ local diagnosticls_setup = {
 ---@param user_diagnosticls_setup DiagnosticLSConfig
 ---@return nil
 M.init = function(user_diagnosticls_setup)
-  if user_diagnosticls_setup ~= nil or not vim.tbl_isempty(user_diagnosticls_setup) then
+  if user_diagnosticls_setup ~= nil and not vim.tbl_isempty(user_diagnosticls_setup) then
     diagnosticls_setup = vim.tbl_extend('force', diagnosticls_setup, user_diagnosticls_setup)
   end
 end
