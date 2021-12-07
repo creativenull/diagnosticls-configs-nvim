@@ -12,6 +12,7 @@ if !filereadable(s:plugin.plug_filepath)
 endif
 
 call plug#begin(s:plugin.plugins_dir)
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug printf('%s', getcwd())
 call plug#end()
