@@ -1,4 +1,4 @@
-if has('nvim') && has('nvim-0.5')
+if has('nvim') && has('nvim-0.5') && !has('nvim-0.6')
   function! s:has_issues() abort
     let l:dls_issues = luaeval('_G.diagnosticls_healthcheck')
     return !empty(l:dls_issues)
