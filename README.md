@@ -7,14 +7,12 @@ builtin [nvim-lsp][lsp]. Works only for neovim >= 0.5.
 
 Check out [supported-linters-and-formatters.md](supported-linters-and-formatters.md)
 
-# TODO
+## Features
 
-+ [X] Tests with busted/vusted or plenary - using plenary test_harness
-+ [X] Use `:checkhealth` to display status of linters/formatters registered with plugin
-+ [X] Add ability to override args, root patterns, etc
-+ [X] Add vim docs
-+ [X] Add contributing content
-+ [X] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
++ Intelligently detect tools installed project-wide or system-wide - works only for node/npm, php/composer and
+  ruby/bundler, additional support for other build tools coming soon.
++ Use `:checkhealth` to see any missing tools.
++ Customize configs for your project needs.
 
 ## Installation
 ### Requirements
@@ -28,7 +26,7 @@ You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before
 
 ```lua
 use {
-  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.1' }, -- tag is optional
+  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.1' }, -- `tag` is optional
   requires = { 'neovim/nvim-lspconfig' }
 }
 ```
@@ -124,6 +122,15 @@ dlsconfig.setup {
   }
 }
 ```
+
+# TODO
+
++ [X] Tests with busted/vusted or plenary - using plenary test_harness
++ [X] Use `:checkhealth` to display status of linters/formatters registered with plugin
++ [X] Add ability to override args, root patterns, etc
++ [X] Add vim docs
++ [X] Add contributing content
++ [X] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
 
 ## Contributing
 
