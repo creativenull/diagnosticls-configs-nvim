@@ -102,18 +102,22 @@ on_attach handler.
 
 ## Advanced Configuration
 
-If the default configuration do not work for certain linters/formatters, or root patterns need to be changed, etc.
-Then you can overwrite the config by just extending them, the configs are exactly the same as the underlying
-[diagnostic-languageserver API][dls-setup] on how to specify linter/formatter config. You can override with the
-`vim.tbl_extend()` function.
+If default configurations of a linter/formatter do not work for your use-case, or there are additional configuration
+that needs to be added which is not provided by default. Then you can extend the built-in configurations with your own
+modifications. The API is the same as [diagnostic-languageserver Initialization Options][dls-setup] on linter/formatter
+structure. You can use `vim.tbl_extend()` to extend these tables:
 
 ```lua
 local eslint = require 'diagnosticls-configs.linter.eslint'
 
--- override
+-- ESLint Extented Config
 eslint = vim.tbl_extend('force', eslint, {
-  args = {'some', 'args'},
-  rootPatterns = {'.git'}
+
+  -- REQUIRED: if `default_config` is enabled, separate name from original sourceName
+  sourceName = 'eslint_extended',
+
+  args = { 'extra', 'args' },
+  rootPatterns = { '.git' }
 })
 
 dlsconfig.setup {
@@ -122,6 +126,11 @@ dlsconfig.setup {
   }
 }
 ```
+
+NOTE: If you have [`default_config` enabled](#default-configuration), then `sourceName` needs to be a different name
+to the provided name, you can just add `_extended` or any other unique name to the extended configuration will work.
+This is because other defaults might use the same linter of the same `sourceName` and would default to use
+that instead of your own extended configuration.
 
 # TODO
 
