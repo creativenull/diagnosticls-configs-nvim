@@ -332,6 +332,7 @@ local vint = require 'diagnosticls-configs.linters.vint'
 [flake]: https://github.com/PyCQA/flake8
 [gofumpt]: https://github.com/mvdan/gofumpt
 [golangci_lint]: https://github.com/golangci/golangci-lint
+[mypy]: https://github.com/python/mypy
 [phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
 [phpstan]: https://github.com/phpstan/phpstan
 [prettier]: https://github.com/prettier/prettier
