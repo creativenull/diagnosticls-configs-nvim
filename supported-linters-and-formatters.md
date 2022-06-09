@@ -218,6 +218,12 @@ local flake = require 'diagnosticls-configs.linters.flake'
 local pylint = require 'diagnosticls-configs.linters.pylint'
 ```
 
+[mypy][mypy]
+
+```lua
+local mypy = require 'diagnosticls-configs.linters.mypy'
+```
+
 #### Formatters
 
 [autopep8][autopep8]
