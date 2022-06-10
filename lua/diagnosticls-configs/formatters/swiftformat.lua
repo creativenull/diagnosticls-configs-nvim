@@ -4,7 +4,13 @@ return {
   sourceName = 'swiftformat',
   command = fs.executable('swiftformat'),
   args = {
-    '%filepath',
+    'stdin',
+    '--stdinpath',
+    '%filepath'
   },
-  rootPatterns = { 'Package.swift', '.git' },
+  rootPatterns = {
+    'Package.swift',
+    '.swiftformat',
+    '.git'
+  },
 }
