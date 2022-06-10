@@ -13,6 +13,7 @@ describe('Formatter Configurations -', function()
     'prettier_standard',
     'standard_fmt',
     'stylua',
+    'swiftformat',
     'ts_standard_fmt',
     'xo_fmt',
   }
