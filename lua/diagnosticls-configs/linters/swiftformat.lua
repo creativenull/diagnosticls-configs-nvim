@@ -16,8 +16,11 @@ return {
   offsetColumn = 0,
   formatLines = 1,
   formatPattern = {
-    [[.*:(\d+):(\d+): (\w*): (.*)(\r|\n)*$]],
+    [[.*:(\d+):(\d+): (\w+): (.*)(\r|\n)*$]],
     { line = 1, column = 2, security = 3, message = { '[swift-format] ', 4 } },
+  },
+  securities = {
+    warning = 'warning'
   },
   rootPatterns = {
     'Package.swift',
