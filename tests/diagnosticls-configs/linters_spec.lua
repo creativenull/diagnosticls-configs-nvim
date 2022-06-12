@@ -18,6 +18,7 @@ describe('Linter Configurations -', function()
     'shellcheck',
     'standard',
     'stylelint',
+    'swiftformat',
     'swiftlint',
     'ts_standard',
     'vint',
