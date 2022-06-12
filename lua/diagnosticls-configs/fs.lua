@@ -35,7 +35,7 @@ local get_local_exec = function(name, context)
   local binpath = string.format('%s/%s/%s', current_working_dir, local_bin_path, name)
 
   if vim.fn.filereadable(binpath) == 0 then
-    add_checkhealth_error(name)
+    return ''
   end
 
   return binpath
