@@ -12,6 +12,7 @@ return {
     line = 'Pos.Line',
     column = 'Pos.Column',
     message = '[golangci_lint] ${Text} [${FromLinter}]',
+    security = 'Severity',
   },
   rootPatterns = { '.git', 'go.mod' },
 }
