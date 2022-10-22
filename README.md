@@ -21,14 +21,22 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 + [nvim-lspconfig][lspconfig] plugin
 + [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
 
-You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin. Using
-[packer.nvim][packer] as an example:
+You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin.
+
+#### Packer.nvim
 
 ```lua
 use {
-  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.6' }, -- `tag` is optional
+  { 'creativenull/diagnosticls-configs-nvim', tag = 'v0.1.8 }, -- `tag` is optional
   requires = { 'neovim/nvim-lspconfig' }
 }
+```
+
+#### Vim-plug
+
+```vim
+Plug 'neovim/nvim-lspconfig'
+Plug 'creativenull/diagnosticls-configs-nvim', { 'tag': 'v0.1.8' } " tag is optional
 ```
 
 ## Setup
@@ -36,6 +44,7 @@ use {
 First you need to initialize the plugin, this is where you can pass your own LSP options:
 
 ```lua
+-- Lua file
 local function on_attach(client)
   print('Attached to ' .. client.name)
 end
@@ -52,6 +61,7 @@ Finally, setup the linters/formatters according to the filetype, here is an exam
 for `javascript` and `javascriptreact` filetype:
 
 ```lua
+-- Lua file
 local eslint = require 'diagnosticls-configs.linters.eslint'
 local standard = require 'diagnosticls-configs.linters.standard'
 local prettier = require 'diagnosticls-configs.formatters.prettier'
@@ -78,6 +88,7 @@ To activate the default configuration you can pass the `default_config` flag as 
 default values for init:
 
 ```lua
+-- Lua file
 dlsconfig.init {
   -- Use a list of default configurations
   -- set by this plugin
@@ -108,6 +119,7 @@ modifications. The API is the same as [diagnostic-languageserver Initialization 
 structure. You can use `vim.tbl_extend()` to extend these tables:
 
 ```lua
+-- Lua file
 local eslint = require 'diagnosticls-configs.linter.eslint'
 
 -- ESLint Extented Config
