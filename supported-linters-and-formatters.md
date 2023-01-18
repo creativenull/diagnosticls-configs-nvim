@@ -21,6 +21,7 @@ on how to set `default_config` check the docs:
 | Swift | [`swiftlint`](#swift) | |
 | TypeScript/TSX | [`eslint`](#typescript) | [`prettier`](#typescript) |
 | Vim | [`vint`](#vim) | |
+| YAML | [`yamllint`](#yaml) | |
 
 ## Linter/Formatter Configurations
 
@@ -338,6 +339,15 @@ local xo_fmt = require 'diagnosticls-configs.formatters.xo_fmt'
 local vint = require 'diagnosticls-configs.linters.vint'
 ```
 
+### YAML
+#### Linters
+
+[yamllint][yamllint]
+
+```lua
+local yamllint = require 'diagnosticls-configs.linters.yamllint'
+```
+
 [//]: # (Linters/Formatters list)
 [autopep8]: https://github.com/hhatto/autopep8
 [black]: https://github.com/psf/black
@@ -367,3 +377,4 @@ local vint = require 'diagnosticls-configs.linters.vint'
 [stylua]: https://github.com/JohnnyMorganz/StyLua
 [swiftformat]: https://github.com/nicklockwood/SwiftFormat
 [swiftlint]: https://github.com/realm/SwiftLint
+[yamllint]: https://github.com/adrienverge/yamllint

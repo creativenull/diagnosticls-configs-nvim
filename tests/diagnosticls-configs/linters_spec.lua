@@ -23,6 +23,7 @@ describe('Linter Configurations -', function()
     'ts_standard',
     'vint',
     'xo',
+    'yamllint',
   }
 
   local function assert_config(config)
