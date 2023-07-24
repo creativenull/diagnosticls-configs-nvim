@@ -2,8 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'redpen',
-  -- command = fs.get_executable('redpen'),
-  command = './bin/redpen',
+  command = fs.executable('redpen'),
   args = { '--limit', '50', '%filepath' },
   debounce = 100,
   isStdout = false,
