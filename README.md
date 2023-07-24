@@ -1,5 +1,10 @@
 # diagnosticls-configs-nvim
 
+<a href="https://dotfyle.com/plugins/creativenull/diagnosticls-configs-nvim">
+  <img src="https://dotfyle.com/plugins/creativenull/diagnosticls-configs-nvim/shield"
+  alt="Configs on dotfyle">
+</a>
+
 An unofficial collection of linter and formatter configurations for [diagnostic-languageserver][dls] to work with
 builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.5.
 
