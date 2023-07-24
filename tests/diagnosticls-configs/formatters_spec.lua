@@ -1,13 +1,18 @@
 describe('Formatter Configurations -', function()
   local formatters = {
+    'autoflake',
+    'autoimport',
     'autopep8',
     'black',
     'deno_fmt',
     'eslint_d_fmt',
     'eslint_fmt',
     'gofumpt',
+    'isort',
     'lua_format',
+    'php_cs_fixer',
     'phpcbf',
+    'pint',
     'prettier',
     'prettier_eslint',
     'prettier_standard',
@@ -16,6 +21,7 @@ describe('Formatter Configurations -', function()
     'swiftformat',
     'ts_standard_fmt',
     'xo_fmt',
+    'yapf',
   }
 
   local function assert_config(config)

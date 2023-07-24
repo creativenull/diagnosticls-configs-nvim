@@ -1,5 +1,6 @@
 describe('Linter Configurations -', function()
   local linters = {
+    'alex',
     'cpplint',
     'eslint',
     'eslint_d',
@@ -8,10 +9,13 @@ describe('Linter Configurations -', function()
     'golangci_lint',
     'languagetool',
     'luacheck',
+    'mypy',
     'phpcs',
     'phpstan',
+    'proselint',
     'psalm',
     'pylint',
+    'redpen',
     'reek',
     'revive',
     'rubocop',
@@ -22,6 +26,7 @@ describe('Linter Configurations -', function()
     'swiftlint',
     'ts_standard',
     'vint',
+    'vulture',
     'xo',
     'yamllint',
   }
