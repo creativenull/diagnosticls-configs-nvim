@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'proselint',
-  command = fs.get_executable('proselint'),
+  command = fs.executable('proselint', fs.Scope.NODE),
   args = { '--json', '-' },
   debounce = 200,
   parseJson = {

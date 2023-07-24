@@ -2,7 +2,7 @@ local fs = require('diagnosticls-configs.fs')
 
 return {
   sourceName = 'alex',
-  command = fs.get_executable('alex', 'node'),
+  command = fs.executable('alex', fs.Scope.NODE),
   debounce = 100,
   offsetLine = 0,
   offsetColumn = 0,
