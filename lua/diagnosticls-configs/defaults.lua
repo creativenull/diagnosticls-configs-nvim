@@ -22,6 +22,9 @@ return {
     linter = require('diagnosticls-configs.linters.luacheck'),
     formatter = require('diagnosticls-configs.formatters.stylua'),
   },
+  ['perl'] = {
+    formatter = require('diagnosticls-configs.formatters.perltidy'),
+  },
   ['php'] = {
     linter = require('diagnosticls-configs.linters.phpcs'),
     formatter = require('diagnosticls-configs.formatters.phpcbf'),
