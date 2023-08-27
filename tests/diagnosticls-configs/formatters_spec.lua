@@ -10,6 +10,8 @@ describe('Formatter Configurations -', function()
     'gofumpt',
     'isort',
     'lua_format',
+    'perlimports',
+    'perltidy',
     'php_cs_fixer',
     'phpcbf',
     'pint',

@@ -15,6 +15,7 @@ on how to set `default_config` check the docs:
 | HTML | [`stylelint`](#html) | [`prettier`](#html) |
 | JavaScript/JSX | [`eslint`](#javascript) | [`prettier`](#javascript) |
 | Lua | [`luacheck`](#lua) | [`stylua`](#lua) |
+| Perl |  | [`perltidy`](#perltidy) |
 | PHP | [`phpcs`](#php) | [`phpcbf`](#php) |
 | Python | [`flake8`](#python) | [`autopep8`](#python) |
 | Ruby | [`reek`](#ruby) | |
@@ -173,6 +174,21 @@ local lua_format = require 'diagnosticls-configs.formatters.lua_format'
 
 ```lua
 local stylua = require 'diagnosticls-configs.formatters.stylua'
+```
+
+### PHP
+#### Formatters
+
+[perltidy][perltidy]
+
+```lua
+local perltidy = require 'diagnosticls-configs.formatters.perltidy'
+```
+
+[perlimports][perlimports]
+
+```lua
+local perlimports = require 'diagnosticls-configs.formatters.perlimports'
 ```
 
 ### PHP
@@ -357,6 +373,8 @@ local yamllint = require 'diagnosticls-configs.linters.yamllint'
 [gofumpt]: https://github.com/mvdan/gofumpt
 [golangci_lint]: https://github.com/golangci/golangci-lint
 [mypy]: https://github.com/python/mypy
+[perlimports]: https://github.com/perl-ide/App-perlimports
+[perltidy]: https://github.com/perltidy/perltidy
 [phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
 [phpstan]: https://github.com/phpstan/phpstan
 [prettier]: https://github.com/prettier/prettier
