@@ -23,6 +23,7 @@ return {
     formatter = require('diagnosticls-configs.formatters.stylua'),
   },
   ['perl'] = {
+    linter = require('diagnosticls-configs.linters.perlcritic'),
     formatter = require('diagnosticls-configs.formatters.perltidy'),
   },
   ['php'] = {
