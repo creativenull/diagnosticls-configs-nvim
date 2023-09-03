@@ -10,6 +10,7 @@ describe('Linter Configurations -', function()
     'languagetool',
     'luacheck',
     'mypy',
+    'perlcritic',
     'phpcs',
     'phpstan',
     'proselint',
