@@ -27,7 +27,97 @@ local diagnosticls_setup = {
     formatters = {},
   },
 }
+local dls_options = {
+  defaults = true,
+  include_formatters = true,
+}
 
+local function tool_config_not_found(tool, sourceName)
+  local found = vim.tbl_filter(function(item)
+    return item.sourceName == sourceName
+  end, tool)
+
+  return #found == 0
+end
+
+local function get_defined_tools(lang_sets)
+  local found_linters = {}
+  local found_formatters = {}
+  local linter_filetypes = {}
+  local formatter_filetypes = {}
+
+  for lang, lang_options in pairs(lang_sets) do
+    linter_filetypes[lang] = {}
+    formatter_filetypes[lang] = {}
+
+    if vim.tbl_islist(lang_options.linters) then
+      for _, linter in pairs(lang_options.linters) do
+        -- if not already added, then add it
+        if tool_config_not_found(found_linters, linter.sourceName) then
+          table.insert(found_linters, linter)
+        end
+
+        -- add to filetypes no matter what
+        table.insert(linter_filetypes[lang], linter.sourceName)
+      end
+    end
+
+    -- only include formatters if needed
+    if dls_options.include_formatters and vim.tbl_islist(lang_options.formatters) then
+      for _, formatter in pairs(lang_options.formatters) do
+        -- if not already added, then add it
+        if tool_config_not_found(found_formatters, formatter.sourceName) then
+          table.insert(found_formatters, formatter)
+        end
+
+        -- add to filetypes no matter what
+        table.insert(formatter_filetypes[lang], formatter.sourceName)
+      end
+    end
+  end
+
+  return {
+    linters = found_linters,
+    filetypes = linter_filetypes,
+    formatters = found_formatters,
+    formatFiletypes = formatter_filetypes,
+  }
+end
+
+function M.setup(options)
+  if options == nil then
+    return
+  end
+
+  vim.validate({
+    defaults = { options.defaults, { 'boolean', 'nil' } },
+    include_formatters = { options.include_formatters, { 'boolean', 'nil' } },
+  })
+
+  dls_options = vim.tbl_extend('force', dls_options, options)
+end
+
+function M.create(lang_sets)
+  local init_options = get_defined_tools(lang_sets)
+  local lsp_filetypes = init_options.filetypes
+
+  if dls_options.include_formatters then
+    -- merge filetypes from formatters too
+    for k, v in pairs(init_options.formatFiletypes) do
+      lsp_filetypes[k] = v
+    end
+  end
+
+  -- TODO: read dls_options.defaults and merge with provided configs
+
+  return {
+    root_dir = lspconfig.util.root_pattern('.git'),
+    filetypes = vim.tbl_keys(lsp_filetypes),
+    init_options = init_options,
+  }
+end
+
+--[[
 ---Initialize lsp options to pass thru diagnosticls
 ---@param user_diagnosticls_setup DiagnosticLSConfig
 ---@return nil
@@ -79,5 +169,6 @@ M.setup = function(filetypes)
 
   lspconfig.diagnosticls.setup(diagnosticls_setup)
 end
+--]]
 
 return M
