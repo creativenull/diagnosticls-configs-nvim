@@ -1,23 +1,18 @@
 local M = {}
 
----Add error to :checkhealth issues
----@param name string
----@return nil
-local add_checkhealth_error = function(name)
-  local errmsg = string.format('%q: no executable found, check |diagnosticls-configs-issues| for help', name)
-  table.insert(_G.diagnosticls_healthcheck, errmsg)
-end
+-- TODO:
+-- Add implementation to find the relevant linter/formatter binary
+-- by traversing down each parent dir and match with FilepathByScope var
+-- for the supported language package managers in Scope.
+
+-- TODO:
+-- Add python virtual env support (venv), automatically detect the venv
+-- folder and then use the tools within it. Related with the todo above.
 
 ---@alias ScopeType
 ---| 'BUNDLE'
 ---| 'COMPOSER'
 ---| 'NODE'
-
-local FilepathByScope = {
-  NODE = 'node_modules/.bin',
-  COMPOSER = 'vendor/bin',
-  BUNDLE = 'vendor/bundle',
-}
 
 M.Scope = {
   NODE = 'NODE',
@@ -25,56 +20,78 @@ M.Scope = {
   BUNDLE = 'BUNDLE',
 }
 
----Get the full path to project local executable
----@param name string
----@param context ScopeType
----@return string
-local get_local_exec = function(name, context)
-  local local_bin_path = FilepathByScope[context]
-  local current_working_dir = vim.loop.cwd()
-  local binpath = string.format('%s/%s/%s', current_working_dir, local_bin_path, name)
+local FilepathByScope = {
+  NODE = 'node_modules/.bin',
+  COMPOSER = 'vendor/bin',
+  BUNDLE = 'vendor/bundle',
+}
 
-  if vim.fn.filereadable(binpath) == 0 then
-    return ''
+---Get local executable based on scope, if present.
+---@param binary string
+---@param context string
+---@return string
+local function local_executable(binary, context)
+  local relativepath = FilepathByScope[context]
+  local binarypath = string.format('%s/%s/%s', vim.loop.cwd(), relativepath, binary)
+
+  if vim.fn.filereadable(binarypath) == 0 then
+    error(string.format('%q: No local executable found, check |diagnosticls-configs-issues| for help', binary), 0)
   end
 
-  return binpath
+  return binarypath
 end
 
----Get the full path to project local executable
----@param name string
+---Get global executable, if present.
+---@param binary string
 ---@return string
-local get_global_exec = function(name)
-  if vim.fn.executable(name) == 1 then
-    return vim.fn.exepath(name)
-  else
-    add_checkhealth_error(name)
-    return name
+local function global_executable(binary)
+  if vim.fn.executable(binary) == 0 then
+    error(string.format('%q: No global executable found, check |diagnosticls-configs-issues| for help', binary), 0)
   end
+
+  return vim.fn.exepath(binary)
 end
 
----Get the full path to executable, search for project installed
----binary, else search for globally install binary. If no executable
----found, then add to the health check, but post no error
+---Get binary path, first from project-local then from
+---global paths otherwise. Report to :checkhealth if
+---found or not.
 ---@param name string
 ---@param context ScopeType
 M.executable = function(name, context)
   -- Track linter/formatter status
-  if _G.diagnosticls_healthcheck == nil then
-    _G.diagnosticls_healthcheck = {}
+  if _G._diagnosticls == nil then
+    _G._diagnosticls = { healthcheck = { errors = {}, ok = {} } }
   end
 
-  if context ~= nil then
-    local local_binpath = get_local_exec(name, context)
+  local local_ok, local_binarypath, global_ok, global_binarypath
 
-    if local_binpath == '' then
-      return get_global_exec(name)
-    end
-
-    return local_binpath
-  else
-    return get_global_exec(name)
+  if context then
+    -- get info from local path
+    local_ok, local_binarypath = pcall(local_executable, name, context)
   end
+
+  -- if that fails then get from global
+  global_ok, global_binarypath = pcall(global_executable, name)
+
+  if not global_ok and not local_ok then
+    local reason = local_binarypath
+    table.insert(_G._diagnosticls.healthcheck.errors, reason)
+
+    reason = global_binarypath
+    table.insert(_G._diagnosticls.healthcheck.errors, reason)
+
+    return name
+  end
+
+  if local_ok then
+    table.insert(_G._diagnosticls.healthcheck.ok, string.format('%q: Found at %s', name, local_binarypath))
+
+    return local_binarypath
+  end
+
+  table.insert(_G._diagnosticls.healthcheck.ok, string.format('%q: Found at %s', name, global_binarypath))
+
+  return global_binarypath
 end
 
 return M
