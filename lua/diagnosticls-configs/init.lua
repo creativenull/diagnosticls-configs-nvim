@@ -5,41 +5,27 @@ if not lspconfig_ok then
   return
 end
 
-local add_linter = require('diagnosticls-configs.linter').add_linter
-local add_linters = require('diagnosticls-configs.linter').add_linters
-local add_formatter = require('diagnosticls-configs.formatter').add_formatter
-local add_formatters = require('diagnosticls-configs.formatter').add_formatters
 local M = {}
-
----@class DiagnosticLSConfig
-local diagnosticls_setup = {
-  -- Plugin Options
-  format = true,
-  default_config = false,
-
-  -- LSP Setup
-  root_dir = lspconfig.util.root_pattern('.git'),
-  filetypes = {},
-  init_options = {
-    filetypes = {},
-    formatFiletypes = {},
-    linters = {},
-    formatters = {},
-  },
-}
 local dls_options = {
-  defaults = true,
-  include_formatters = true,
+  defaults = false,
+  format = true,
 }
 
-local function tool_config_not_found(tool, sourceName)
+---Check if a tool is in the inserted table
+---@param tool table
+---@param name string
+---@return boolean
+local function tool_config_not_found(tool, name)
   local found = vim.tbl_filter(function(item)
-    return item.sourceName == sourceName
+    return item.sourceName == name
   end, tool)
 
   return #found == 0
 end
 
+---Create a diagnostic-languageserver InitializationOptions struct
+---@param lang_sets table
+---@return table
 local function get_defined_tools(lang_sets)
   local found_linters = {}
   local found_formatters = {}
@@ -63,7 +49,7 @@ local function get_defined_tools(lang_sets)
     end
 
     -- only include formatters if needed
-    if dls_options.include_formatters and vim.tbl_islist(lang_options.formatters) then
+    if dls_options.format and vim.tbl_islist(lang_options.formatters) then
       for _, formatter in pairs(lang_options.formatters) do
         -- if not already added, then add it
         if tool_config_not_found(found_formatters, formatter.sourceName) then
@@ -84,6 +70,9 @@ local function get_defined_tools(lang_sets)
   }
 end
 
+---Set some options for the plugin
+---@param options table
+---@return nil
 function M.setup(options)
   if options == nil then
     return
@@ -91,24 +80,39 @@ function M.setup(options)
 
   vim.validate({
     defaults = { options.defaults, { 'boolean', 'nil' } },
-    include_formatters = { options.include_formatters, { 'boolean', 'nil' } },
+    format = { options.format, { 'boolean', 'nil' } },
   })
 
   dls_options = vim.tbl_extend('force', dls_options, options)
 end
 
+---Create nvim-lspconfig options merge with defaults provided
+---by the plugin, if permitted
+---@param lang_sets table
+---@return table
 function M.create(lang_sets)
-  local init_options = get_defined_tools(lang_sets)
-  local lsp_filetypes = init_options.filetypes
+  lang_sets = lang_sets == nil and {} or lang_sets
 
-  if dls_options.include_formatters then
+  if dls_options.defaults then
+    -- merge with defaults first if set
+    local default_lang_sets = require('diagnosticls-configs.defaults')
+    lang_sets = vim.tbl_extend('force', default_lang_sets, lang_sets)
+  end
+
+  if not lang_sets then
+    -- nothing to return for nvim-lspconfig
+    return { root_dir = lspconfig.util.root_pattern('.git') }
+  end
+
+  local init_options = get_defined_tools(lang_sets)
+  local lsp_filetypes = vim.fn.copy(init_options.filetypes)
+
+  if dls_options.format then
     -- merge filetypes from formatters too
     for k, v in pairs(init_options.formatFiletypes) do
       lsp_filetypes[k] = v
     end
   end
-
-  -- TODO: read dls_options.defaults and merge with provided configs
 
   return {
     root_dir = lspconfig.util.root_pattern('.git'),
@@ -116,59 +120,5 @@ function M.create(lang_sets)
     init_options = init_options,
   }
 end
-
---[[
----Initialize lsp options to pass thru diagnosticls
----@param user_diagnosticls_setup DiagnosticLSConfig
----@return nil
-M.init = function(user_diagnosticls_setup)
-  if user_diagnosticls_setup ~= nil and not vim.tbl_isempty(user_diagnosticls_setup) then
-    diagnosticls_setup = vim.tbl_extend('force', diagnosticls_setup, user_diagnosticls_setup)
-  end
-end
-
----Setup linter(s) and/or formatter(s) given by filetypes
----@param filetypes table
----@return nil
-M.setup = function(filetypes)
-  -- Set some defaults but priority is given to
-  -- filetypes from argument first
-  if diagnosticls_setup.default_config then
-    local default_filetypes = require('diagnosticls-configs.defaults')
-    if filetypes == nil then
-      filetypes = default_filetypes
-    else
-      filetypes = vim.tbl_extend('force', default_filetypes, filetypes)
-    end
-  end
-
-  if vim.tbl_isempty(filetypes) then
-    vim.api.nvim_err_writeln('[diagnosticls-configs] Provided setup() is invalid')
-    return
-  end
-
-  for filetype, configs in pairs(filetypes) do
-    if configs.linter ~= nil then
-      if vim.tbl_islist(configs.linter) and not vim.tbl_isempty(configs.linter) then
-        add_linters(diagnosticls_setup, filetype, configs.linter)
-      else
-        add_linter(diagnosticls_setup, filetype, configs.linter)
-      end
-    end
-
-    if configs.formatter ~= nil and diagnosticls_setup.format then
-      if vim.tbl_islist(configs.formatter) and not vim.tbl_isempty(configs.formatter) then
-        add_formatters(diagnosticls_setup, filetype, configs.formatter)
-      else
-        add_formatter(diagnosticls_setup, filetype, configs.formatter)
-      end
-    end
-  end
-
-  diagnosticls_setup.filetypes = vim.tbl_keys(filetypes)
-
-  lspconfig.diagnosticls.setup(diagnosticls_setup)
-end
---]]
 
 return M
