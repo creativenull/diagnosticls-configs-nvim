@@ -94,4 +94,12 @@ M.executable = function(name, context)
   return global_binarypath
 end
 
+M.get_plugin_path = function()
+  local matches = vim.tbl_filter(function(path)
+    return vim.endswith(path, 'diagnosticls-configs-nvim')
+  end, vim.api.nvim_list_runtime_paths())
+
+  return vim.tbl_isempty(matches) and '' or matches[1]
+end
+
 return M
