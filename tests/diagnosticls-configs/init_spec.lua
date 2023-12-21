@@ -1,0 +1,23 @@
+describe('Main module -', function()
+  local dls = require('diagnosticls-configs')
+
+  it('Should have lspconfig table', function()
+    local dls_config = dls.create()
+    assert.is_true(dls_config.root_dir ~= nil and dls_config.filetypes ~= nil and dls_config.init_options ~= nil)
+  end)
+
+  it('Should have defaults in lspconfig table', function()
+    dls.setup({ defaults = true })
+    local dls_config = dls.create()
+    assert.is_true(not vim.tbl_isempty(dls_config.filetypes))
+    assert.is_true(not vim.tbl_isempty(dls_config.init_options.linters))
+    assert.is_true(not vim.tbl_isempty(dls_config.init_options.formatters))
+  end)
+
+  it('Should not have formatters in lspconfig table', function()
+    dls.setup({ defaults = true, format = false })
+    local dls_config = dls.create()
+    assert.is_true(dls_config.root_dir ~= nil and dls_config.filetypes ~= nil and dls_config.init_options ~= nil)
+    assert.is_true(vim.tbl_isempty(dls_config.init_options.formatters))
+  end)
+end)
