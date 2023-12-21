@@ -88,7 +88,7 @@ end
 
 ---Create nvim-lspconfig options merge with defaults provided
 ---by the plugin, if permitted
----@param lang_sets table
+---@param lang_sets table|nil
 ---@return table
 function M.create(lang_sets)
   lang_sets = lang_sets == nil and {} or lang_sets
