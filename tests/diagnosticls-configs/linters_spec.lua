@@ -1,36 +1,17 @@
+local function get_files()
+  local fs = require('diagnosticls-configs.fs')
+  local path = fs.get_plugin_path() .. '/lua/diagnosticls-configs/linters'
+  local entries = vim.fn.readdir(path, function(_, value)
+    return vim.fn.isdirectory(value) == 0
+  end)
+
+  return vim.tbl_map(function(value)
+    return vim.split(value, '.', { plain = true })[1]
+  end, entries)
+end
+
 describe('Linter Configurations -', function()
-  local linters = {
-    'alex',
-    'cpplint',
-    'eslint',
-    'eslint_d',
-    'flake8',
-    'flow',
-    'golangci_lint',
-    'languagetool',
-    'luacheck',
-    'mypy',
-    'perlcritic',
-    'phpcs',
-    'phpstan',
-    'proselint',
-    'psalm',
-    'pylint',
-    'redpen',
-    'reek',
-    'revive',
-    'rubocop',
-    'shellcheck',
-    'standard',
-    'stylelint',
-    'swiftformat',
-    'swiftlint',
-    'ts_standard',
-    'vint',
-    'vulture',
-    'xo',
-    'yamllint',
-  }
+  local linters = get_files()
 
   local function assert_config(config)
     local is_non_empty_string = function(value)

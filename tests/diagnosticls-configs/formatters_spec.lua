@@ -1,30 +1,17 @@
+local function get_files()
+  local fs = require('diagnosticls-configs.fs')
+  local path = fs.get_plugin_path() .. '/lua/diagnosticls-configs/formatters'
+  local entries = vim.fn.readdir(path, function(_, value)
+    return vim.fn.isdirectory(value) == 0
+  end)
+
+  return vim.tbl_map(function(value)
+    return vim.split(value, '.', { plain = true })[1]
+  end, entries)
+end
+
 describe('Formatter Configurations -', function()
-  local formatters = {
-    'autoflake',
-    'autoimport',
-    'autopep8',
-    'black',
-    'deno_fmt',
-    'eslint_d_fmt',
-    'eslint_fmt',
-    'gofumpt',
-    'isort',
-    'lua_format',
-    'perlimports',
-    'perltidy',
-    'php_cs_fixer',
-    'phpcbf',
-    'pint',
-    'prettier',
-    'prettier_eslint',
-    'prettier_standard',
-    'standard_fmt',
-    'stylua',
-    'swiftformat',
-    'ts_standard_fmt',
-    'xo_fmt',
-    'yapf',
-  }
+  local formatters = get_files()
 
   local function assert_config(config)
     local is_non_empty_string = function(value)
