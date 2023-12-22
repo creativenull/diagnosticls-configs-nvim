@@ -120,6 +120,20 @@ require('diagnosticls-configs').setup({
 local dls_config = require('diagnosticls-configs').create()
 ```
 
+You can also override the default by providing the same table as before.
+
+```lua
+require('diagnosticls-configs').setup({
+    defaults = true
+})
+local dls_config = require('diagnosticls-configs').create({
+  -- override .js linter
+  javascript = {
+    linters = { require('diagnosticls-configs.linters.eslint') },
+  },
+})
+```
+
 ### Opt-out formatters
 
 If you do not want to include formatters and just want to use diagnostic-languageserver for linting, then you can turn
@@ -148,6 +162,16 @@ prettier = vim.tbl_extend('force', prettier, {
     args = { 'additional', 'args' },
 })
 ```
+
+## Troubleshooting
+
+If you get "no executable found" issues in `:checkhealth`, this means that the
+linter or formatter was not found in the provided filepath. Ensure that it is
+installed globally or in a valid filepath.
+
+For nodejs/npm, php/composer, ruby/bundler: check if the linter/formatter
+is installed in your node\_modules (npm), vendor (composer/bundler) project
+folder, or installed globally.
 
 # TODO
 
