@@ -58,8 +58,8 @@ Plug 'creativenull/diagnosticls-configs-nvim', { 'tag': 'v1.*' } " tag is option
 ## Setup
 
 The only thing this plugin provides is a wrapper to be passed to `nvim-lspconfig` with the presets provided by this
-plugin. This way you can customize any other config you've already setup for diagnostic-languageserver and extend
-however you want.
+plugin. This way you can customize any other config you've already setup for diagnostic-languageserver and extend them
+however you like.
 
 ```lua
 local function on_attach(client)
@@ -87,9 +87,31 @@ require('lspconfig').diagnosticls.setup(vim.tbl_extend('force', dls_config, {
 }))
 ```
 
-## Default configuration
+## The `setup()`
 
-Default configuration is an opt-in feature. To enable it use `setup()` to include defaults.
+If you want linters and formatters for your language (check out the [supported list](supported-linters-and-formatters.md)),
+or if you just want linters and not formatters during before creating the `lspconfig` setup, then you can make use of
+`setup()` before calling `create()` to adjust those settings.
+
+```lua
+require('diagnosticls-configs').setup({
+  -- Use a list of default configurations
+  -- set by this plugin
+  -- (Default: false)
+  defaults = false,
+
+  -- Set to false if formatting is not needed at all,
+  -- any formatter provided will be ignored
+  -- (Default: true)
+  format = true,
+})
+```
+
+### Default configuration
+
+We have a list of default configurations for some languages but this is an opt-in feature. To enable it use `setup()`
+to include defaults. Check the [supported-linters-and-formatters.md](supported-linters-and-formatters.md) to see
+the provided defaults.
 
 ```lua
 require('diagnosticls-configs').setup({
@@ -98,7 +120,7 @@ require('diagnosticls-configs').setup({
 local dls_config = require('diagnosticls-configs').create()
 ```
 
-## Opt-out formatters
+### Opt-out formatters
 
 If you do not want to include formatters and just want to use diagnostic-languageserver for linting, then you can turn
 off via `setup()`.
