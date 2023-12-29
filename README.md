@@ -24,7 +24,7 @@ builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.5.
 
 + [Neovim v0.8 and up][neovim]
 + [nvim-lspconfig][lspconfig]
-+ [Diagnostic-languageserver][dls], globally installed: `npm i -g diagnostic-languageserver` (or via [Mason.nvim][mason])
++ [Diagnostic-languageserver][dls], globally installed: `npm i -g diagnostic-languageserver` (or via [Mason.nvim][mason]: `:MasonInstall diagnostic-languageserver`)
 
 You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin.
 
