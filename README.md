@@ -89,9 +89,15 @@ require('lspconfig').diagnosticls.setup(vim.tbl_extend('force', dls_config, {
 
 ## The `setup()`
 
-If you want linters and formatters for your language (check out the [supported list](supported-linters-and-formatters.md)),
-or if you just want linters and not formatters during before creating the `lspconfig` setup, then you can make use of
-`setup()` before calling `create()` to adjust those settings.
+If you want to adjust `diagnosticls-configs` settings, you will need to call `setup()` before you call `create()` in
+order to save your preference before any linter/formatter could be provided.
+
+Currently, there are only two options we provide:
+
+- `defaults` - Provides you with a list of pre-configurations for all languages.
+  Check [supported list](supported-linters-and-formatters.md)) for a list of supported languages that are
+  pre-configured.
+- `format` - Enable/disable formatters, if you only need to use linters.
 
 ```lua
 require('diagnosticls-configs').setup({
@@ -105,29 +111,28 @@ require('diagnosticls-configs').setup({
   -- (Default: true)
   format = true,
 })
+
+-- Then call create()
+local dls_config = require('diagnosticls-configs').create()
 ```
 
 ### Default configuration
 
-We have a list of default configurations for some languages but this is an opt-in feature. To enable it use `setup()`
-to include defaults. Check the [supported-linters-and-formatters.md](supported-linters-and-formatters.md) to see
-the provided defaults.
+As provided via `setup()`, you can enable a list of default configurations (check [supported-linters-and-formatters.md](supported-linters-and-formatters.md))
 
 ```lua
-require('diagnosticls-configs').setup({
-    defaults = true
-})
+require('diagnosticls-configs').setup({ defaults = true })
+
 local dls_config = require('diagnosticls-configs').create()
 ```
 
-You can also override the default by providing the same table as before.
+You can also override the defaults by providing the same table as before.
 
 ```lua
-require('diagnosticls-configs').setup({
-    defaults = true
-})
+require('diagnosticls-configs').setup({ defaults = true })
+
 local dls_config = require('diagnosticls-configs').create({
-  -- override .js linter
+  -- Override javascript linters
   javascript = {
     linters = { require('diagnosticls-configs.linters.eslint') },
   },
@@ -136,14 +141,15 @@ local dls_config = require('diagnosticls-configs').create({
 
 ### Opt-out formatters
 
-If you do not want to include formatters and just want to use diagnostic-languageserver for linting, then you can turn
-off via `setup()`.
+If you only want to use diagnostic-languageserver for linting, then you can disable formatters provided by `defaults`
+or your custom formatter configs.
 
 ```lua
 require('diagnosticls-configs').setup({
     defaults = true,
     format = false,
 })
+
 local dls_config = require('diagnosticls-configs').create()
 ```
 
@@ -157,7 +163,7 @@ to see what options you can adjust for a linter or a formatter.
 -- Example
 local prettier = require('diagnosticls-configs.formatters.prettier')
 prettier = vim.tbl_extend('force', prettier, {
-    -- overrides
+    -- Override
     sourceName = 'prettier_ext',
     args = { 'additional', 'args' },
 })
@@ -175,12 +181,7 @@ folder, or installed globally.
 
 # TODO
 
-+ [X] Tests with busted/vusted or plenary - using plenary test\_harness
-+ [X] Use `:checkhealth` to display status of linters/formatters registered with plugin
-+ [X] Add ability to override args, root patterns, etc
-+ [X] Add vim docs
-+ [X] Add contributing content
-+ [X] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
+- [  ] Documentation
 
 ## Contributing
 

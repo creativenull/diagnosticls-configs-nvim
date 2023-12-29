@@ -36,9 +36,16 @@ however you like.
     }))
 <
 
-If you want linters and formatters for your language or if you just want linters
-and not formatters during before creating the `lspconfig` setup, then you can
-make use of `setup()` before calling `create()` to adjust those settings.
+If you want to adjust `diagnosticls-configs` settings, you will need to call
+`setup()` before you call `create()` in order to save your preference before
+any linter/formatter could be provided.
+
+Currently, there are only two options we provide:
+
+- `defaults` - Provides you with a list of pre-configurations for all languages.
+  Check |diagnosticls-configs-supported| for a list of supported languages that
+  are pre-configured.
+- `format` - Enable/disable formatters, if you only need to use linters.
 
 >lua
     require('diagnosticls-configs').setup({
@@ -52,29 +59,29 @@ make use of `setup()` before calling `create()` to adjust those settings.
       -- (Default: true)
       format = true,
     })
+
+    -- Then call create()
+    local dls_config = require('diagnosticls-configs').create()
 <
 
 DEFAULT CONFIGURATIONS                          *diagnosticls-configs-defaults*
 
-We have a list of default configurations for some languages but this is an
-opt-in feature. To enable it use `setup()` to include defaults before calling
-`create()`. Check |diagnosticls-configs-supported| to see the provided defaults.
+As provided via `setup()`, you can enable a list of default configurations
+(check |diagnosticls-configs-supported|).
 
 >lua
-    require('diagnosticls-configs').setup({
-        defaults = true
-    })
+    require('diagnosticls-configs').setup({ defaults = true })
+
     local dls_config = require('diagnosticls-configs').create()
 <
 
 You can also override the default by providing the same table as before.
 
 >lua
-    require('diagnosticls-configs').setup({
-        defaults = true
-    })
+    require('diagnosticls-configs').setup({ defaults = true })
+
     local dls_config = require('diagnosticls-configs').create({
-      -- override .js linter
+      -- Override javascript linters
       javascript = {
         linters = { require('diagnosticls-configs.linters.eslint') },
       },
@@ -91,6 +98,7 @@ languageserver for linting, then you can turn off via `setup()`.
         defaults = true,
         format = false,
     })
+
     local dls_config = require('diagnosticls-configs').create()
 <
 
