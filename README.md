@@ -10,7 +10,7 @@ builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.5.
 
 ## Supported linters and formatters
 
-Check out [supported-linters-and-formatters.md](supported-linters-and-formatters.md)
+[supported-linters-and-formatters.md](supported-linters-and-formatters.md)
 
 ## Features
 
