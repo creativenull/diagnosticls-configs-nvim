@@ -22,9 +22,9 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 ## Installation
 ### Requirements
 
-+ [Neovim v0.5 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
-+ [nvim-lspconfig][lspconfig] plugin
-+ [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
++ [Neovim v0.8 and up][neovim]
++ [nvim-lspconfig][lspconfig]
++ [Diagnostic-languageserver][dls], globally installed: `npm i -g diagnostic-languageserver` (or via [Mason.nvim][mason])
 
 You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin.
 
@@ -179,24 +179,17 @@ For nodejs/npm, php/composer, ruby/bundler: check if the linter/formatter
 is installed in your node\_modules (npm), vendor (composer/bundler) project
 folder, or installed globally.
 
-# TODO
-
-- [  ] Documentation
-
 ## Contributing
 
-First of all, thank you for your contribution 🙂!
+The main part is adding linters and formatters to the repo. Start from going over the
+[Diagnostic-languageserver API][dls-setup] and the [examples][dls-wiki] that they provide. Finally have a look at
+`lua/diagnosticls-configs/linters` or `lua/diagnosticls-configs/formatters` on this repo to see how we set them up.
 
-To help create configurations start with the [diagnostic-languageserver API][dls-setup] to know how the object is
-structured for a linter or a formatter. Also [check out the wiki][dls-wiki] to see some examples. Finally, check out the
-configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
-they are implemented.
+Make a PR with the additions or changes to the configurations.
 
-Tools required for linting and formatting for this project (which are also supported by this plugin):
-+ [`luacheck`][luacheck] - Linting
-+ [`stylua`][stylua] - Formatting
+### Testing
 
-For testing, add the relevant test logic in `tests/diagnosticls-configs` and then run:
+The following should run and validate linters/formatters:
 
 ```sh
 make test
@@ -206,15 +199,13 @@ make test
 
 Credits goes to the following repos for inspiration:
 
-+ [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) - for example configs in json format
-+ [ale](https://github.com/dense-analysis/ale) - for a vibrate list of supported linters/formatters to look through and implement
++ [Diagnostic-languageserver](https://github.com/iamcco/diagnostic-languageserver) - for example configs in json format
++ [ALE](https://github.com/dense-analysis/ale) - for a vibrate list of supported linters/formatters to look through and implement
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
 [dls-wiki]: https://github.com/iamcco/diagnostic-languageserver/wiki
 [lsp]: https://neovim.io/doc/user/lsp.html
-[packer]: https://github.com/wbthomason/packer.nvim
-[luacheck]: https://github.com/mpeterv/luacheck
-[stylua]: https://github.com/JohnnyMorganz/StyLua
 [lspconfig]: https://github.com/neovim/nvim-lspconfig
 [neovim]: https://github.com/neovim/neovim
+[mason]: https://github.com/williamboman/mason.nvim
