@@ -8,6 +8,10 @@
 An unofficial collection of linter and formatter configurations for [diagnostic-languageserver][dls] to work with
 builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.5.
 
+## TODO
+
+- [ ] Auto-generate defaults as a .md file, just like in [efmls-configs repo](https://github.com/creativenull/efmls-configs-nvim)
+
 ## Supported linters and formatters
 
 [supported-linters-and-formatters.md](supported-linters-and-formatters.md)
