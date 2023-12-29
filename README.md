@@ -182,7 +182,7 @@ folder, or installed globally.
 ## Alternatives
 
 - ALE - [https://github.com/dense-analysis/ale](https://github.com/dense-analysis/ale)
-- diagnostic-languageserver - [https://github.com/iamcco/diagnostic-languageserver](https://github.com/iamcco/diagnostic-languageserver)
+- efm-langserver - [https://github.com/mattn/efm-langserver](https://github.com/mattn/efm-langserver)
 - guard.nvim - [https://github.com/nvimdev/guard.nvim](https://github.com/nvimdev/guard.nvim)
 - nvim-lint - [https://github.com/mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - formatter.nvim - [https://github.com/mhartington/formatter.nvim](https://github.com/mhartington/formatter.nvim)
