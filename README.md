@@ -179,6 +179,14 @@ For nodejs/npm, php/composer, ruby/bundler: check if the linter/formatter
 is installed in your node\_modules (npm), vendor (composer/bundler) project
 folder, or installed globally.
 
+## Alternatives
+
+- ALE - [https://github.com/dense-analysis/ale](https://github.com/dense-analysis/ale)
+- diagnostic-languageserver - [https://github.com/iamcco/diagnostic-languageserver](https://github.com/iamcco/diagnostic-languageserver)
+- guard.nvim - [https://github.com/nvimdev/guard.nvim](https://github.com/nvimdev/guard.nvim)
+- nvim-lint - [https://github.com/mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- formatter.nvim - [https://github.com/mhartington/formatter.nvim](https://github.com/mhartington/formatter.nvim)
+
 ## Contributing
 
 The main part is adding linters and formatters to the repo. Start from going over the
