@@ -67,7 +67,7 @@ M.setup = function(filetypes)
     end
 
     if configs.formatter ~= nil and diagnosticls_setup.format then
-      if vim.tbl_islist(configs.formatter) and not vim.tbl_isempty(configs.formatter) then
+      if vim.islist(configs.formatter) and not vim.tbl_isempty(configs.formatter) then
         add_formatters(diagnosticls_setup, filetype, configs.formatter)
       else
         add_formatter(diagnosticls_setup, filetype, configs.formatter)

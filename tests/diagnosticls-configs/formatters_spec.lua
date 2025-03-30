@@ -32,7 +32,7 @@ describe('Formatter Configurations -', function()
     end
 
     local is_non_empty_list = function(value)
-      return vim.tbl_islist(value) and not vim.tbl_isempty(value)
+      return vim.islist(value) and not vim.tbl_isempty(value)
     end
 
     vim.validate({
