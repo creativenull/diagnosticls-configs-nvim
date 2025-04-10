@@ -59,7 +59,7 @@ M.setup = function(filetypes)
 
   for filetype, configs in pairs(filetypes) do
     if configs.linter ~= nil then
-      if vim.tbl_islist(configs.linter) and not vim.tbl_isempty(configs.linter) then
+      if vim.islist(configs.linter) and not vim.tbl_isempty(configs.linter) then
         add_linters(diagnosticls_setup, filetype, configs.linter)
       else
         add_linter(diagnosticls_setup, filetype, configs.linter)
