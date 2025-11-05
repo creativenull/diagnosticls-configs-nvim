@@ -1,56 +1,124 @@
 -- Defaults as defined in: supported-linters-and-formatters.md
 return {
-  ['css'] = {
-    linter = require('diagnosticls-configs.linters.stylelint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  css = {
+    linters = {
+      require('diagnosticls-configs.linters.stylelint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
   },
-  ['go'] = { linter = require('diagnosticls-configs.linters.golangci_lint') },
-  ['html'] = { linter = require('diagnosticls-configs.linters.stylelint') },
-  ['javascript'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  go = {
+    linters = {
+      require('diagnosticls-configs.linters.golangci_lint'),
+    },
   },
-  ['javascriptreact'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  html = {
+    linters = {
+      require('diagnosticls-configs.linters.stylelint'),
+    },
   },
-  ['less'] = {
-    linter = require('diagnosticls-configs.linters.stylelint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  javascript = {
+    linters = {
+      require('diagnosticls-configs.linters.eslint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
   },
-  ['lua'] = {
-    linter = require('diagnosticls-configs.linters.luacheck'),
-    formatter = require('diagnosticls-configs.formatters.stylua'),
+  javascriptreact = {
+    linters = {
+      require('diagnosticls-configs.linters.eslint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
   },
-  ['perl'] = {
-    linter = require('diagnosticls-configs.linters.perlcritic'),
-    formatter = require('diagnosticls-configs.formatters.perltidy'),
+  less = {
+    linters = {
+      require('diagnosticls-configs.linters.stylelint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
   },
-  ['php'] = {
-    linter = require('diagnosticls-configs.linters.phpcs'),
-    formatter = require('diagnosticls-configs.formatters.phpcbf'),
+  lua = {
+    linters = {
+      require('diagnosticls-configs.linters.luacheck'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.stylua'),
+    },
   },
-  ['python'] = {
-    linter = require('diagnosticls-configs.linters.flake8'),
-    formatter = require('diagnosticls-configs.formatters.autopep8'),
+  perl = {
+    linters = {
+      require('diagnosticls-configs.linters.perlcritic'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.perltidy'),
+    },
   },
-  ['ruby'] = { linter = require('diagnosticls-configs.linters.reek') },
-  ['sass'] = {
-    linter = require('diagnosticls-configs.linters.stylelint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  php = {
+    linters = {
+      require('diagnosticls-configs.linters.phpstan'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.php_cs_fixer'),
+    },
   },
-  ['scss'] = {
-    linter = require('diagnosticls-configs.linters.stylelint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  python = {
+    linters = {
+      require('diagnosticls-configs.linters.flake8'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.autopep8'),
+    },
   },
-  ['swift'] = { linter = require('diagnosticls-configs.linters.swiftlint') },
-  ['typescript'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  ruby = {
+    linters = {
+      require('diagnosticls-configs.linters.reek'),
+    },
   },
-  ['typescriptreact'] = {
-    linter = require('diagnosticls-configs.linters.eslint'),
-    formatter = require('diagnosticls-configs.formatters.prettier'),
+  sass = {
+    linters = {
+      require('diagnosticls-configs.linters.stylelint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
   },
-  ['vim'] = { linter = require('diagnosticls-configs.linters.vint') },
+  scss = {
+    linters = {
+      require('diagnosticls-configs.linters.stylelint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
+  },
+  swift = {
+    linters = {
+      require('diagnosticls-configs.linters.swiftlint'),
+    },
+  },
+  typescript = {
+    linters = {
+      require('diagnosticls-configs.linters.eslint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
+  },
+  typescriptreact = {
+    linters = {
+      require('diagnosticls-configs.linters.eslint'),
+    },
+    formatters = {
+      require('diagnosticls-configs.formatters.prettier'),
+    },
+  },
+  vim = {
+    linters = {
+      require('diagnosticls-configs.linters.vint'),
+    },
+  },
 }
