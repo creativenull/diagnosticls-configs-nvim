@@ -57,7 +57,7 @@ end
 ---binary, else search for globally install binary. If no executable
 ---found, then add to the health check, but post no error
 ---@param name string
----@param context ScopeType
+---@param context ScopeType|nil
 M.executable = function(name, context)
   -- Track linter/formatter status
   if _G.diagnosticls_healthcheck == nil then
