@@ -1,103 +1,79 @@
 INTRODUCTION                                       *diagnosticls-configs* *dls*
 
-A collection of linters and formatters configured for diagnostic language
-server to work with nvim-lsp.
+A collection of linters and formatters configured for diagnostic-languageserver
+to work with Neovim LSP client.
 
 SETUP                                              *diagnosticls-configs-setup*
 
-First you need to initialize the plugin, this is where you can pass your own
-LSP options:
+Use the `create()` to start adding the tools you want to run for the different
+filetypes. `dls_config` will create the necessary `init_options` for
+diagnostic-languageserver which you can then pass to `vim.lsp.config()` or to the
+lspconfig plugin.
 
 >
-    local function on_attach(client)
-      print('Attached to ' .. client.name)
-    end
+    local eslint = require('diagnosticls-configs.linters.eslint')
+    local prettier = require('diagnosticls-configs.formatters.prettier')
+    local stylua = require('diagnosticls-configs.formatters.stylua')
+    local dls_config = require('diagnosticls-configs').create({
+        javascript = {
+            linters = { eslint },
+            formatters = { prettier },
+        },
+        json = {
+            formatters = { prettier },
+        },
+        lua = {
+            formatters = { prettier },
+        }
+    })
 
-    local dlsconfig = require 'diagnosticls-configs'
+    -- If using nvim >= 0.11 then use the following
+    vim.lsp.config('diagnosticls', vim.tbl_extend('force', dls_config, {
+        cmd = { 'diagnostic-languageserver', '--stdio' },
+        root_markers = { '.git' }
 
-    dlsconfig.init {
-      on_attach = on_attach -- Your custom attach function
-    }
-<
+        -- Pass your custom lsp config below like on_attach and capabilities
+        --
+        -- on_attach = on_attach,
+        -- capabilities = capabilities,
+    }))
 
-Finally, setup the linters/formatters according to the filetype, here is an
-example for running eslint and prettier for `javascript` and `javascriptreact`
-filetype:
-
->
-    local eslint = require 'diagnosticls-configs.linters.eslint'
-    local prettier = require 'diagnosticls-configs.formatters.prettier'
-    dlsconfig.setup {
-      ['javascript'] = {
-        linter = eslint,
-        formatter = prettier
-      },
-      ['javascriptreact'] = {
-        linter = eslint,
-        formatter = prettier
-      }
-    }
+    -- If using nvim <= 0.10 then use the following
+    require('lspconfig').diagnosticls.setup(vim.tbl_extend('force', dls_config, {
+        -- Pass your custom lsp config below like on_attach and capabilities
+        --
+        -- on_attach = on_attach,
+        -- capabilities = capabilities,
+    }))
 <
 
 DEFAULT CONFIGURATIONS                          *diagnosticls-configs-defaults*
 
-A default configuration for the supported filetypes is provided but not
-activated by default.
+If you do not want to individually add each linter/formatter to each filetypes
+then you can use the `defaults()` function to use a list of default configurations.
 
-To activate the default configuration you can pass the `default_config` flag as
-true in the init function:
+To use the default configuration without having to use `create()` use the
+following before calling `vim.lsp.config()` or `require('lspconfig').diagnosticls.setup()`:
 
 >
-    dlsconfig.init {
-      -- apply default config for supported linters and formatters
-      default_config = true,
-      -- default to true, use false if you don't want to setup formatters by default
-      format = true
-    }
+    local dls_config = require('diagnosticls-configs').defaults()
 <
-
-You will still need to call the `setup()` after `init()` for the changes to
-take effect. You can still pass your custom configurations to `setup()` as
-show in |diagnosticls-confis-setup| and it will override any default
-configuration set by `default_config` if it's for the same filetype.
-
-NOTE: For `format` option it does not imply that it will "format on save". You
-still need to setup that in your lsp on_attach handler.
 
 ADVANCED CONFIGURATIONS                         *diagnosticls-configs-advanced*
 
-If default configurations of a linter/formatter do not work for your
-use-case, or there are additional configuration that needs to be added
-which is not provided by default. Then you can extend the built-in
-configurations with your own modifications. The API is the same as
-diagnostic-languageserver Initialization Options on linter/formatter
-structure. You can use |vim.tbl_extend| to extend these tables:
+If default configurations of a linter/formatter do not work for your use-case,
+or there are additional configuration that needs to be added which is not
+provided by default. Then you can extend the built-in configurations with your
+own modifications. The API is the same as https://github.com/iamcco/diagnostic-languageserver#config--document
+on linter/formatter structure. Here is an example if you want to change the
+arguments for the `eslint` linter:
 
 >
-    local eslint = require 'diagnosticls-configs.linter.eslint'
-
-    -- ESLint Extented Config
-    eslint = vim.tbl_extend('force', eslint, {
-
-      -- REQUIRED: if `default_config` is enabled, separate name from original sourceName
-      sourceName = 'eslint_extended',
-
-      args = { 'extra', 'args' },
-      rootPatterns = { '.git' }
-    })
-
-    dlsconfig.setup {
-      javascript = {
-        linter = eslint
-      }
-    }
+    local eslint = require('diagnosticls-configs.linters.eslint')
+    eslint.command = '/another/path/to/eslint'
 <
 
-NOTE: If you have [`default_config` enabled](#default-configuration), then
-`sourceName` needs to be a different name to the provided name, you can just
-add "_extended" or any other unique name to the extended configuration will
-work. This is because other defaults might use the same linter of the same
-`sourceName` and would default to use that instead of your own extended
+You can then pass this to `create()` or `defaults()` to use the modified
 configuration.
 
 TROUBLESHOOTING                                   *diagnosticls-configs-issues*
@@ -108,7 +84,7 @@ installed globally or in a valid filepath.
 
 For nodejs/npm, php/composer, ruby/bundler: check if the linter/formatter
 is installed in your node_modules (npm), vendor (composer/bundler) project
-folder, or installed globally.
+folder, otherwise, installed globally.
 
 SUPPORTED LINTERS AND FORMATTERS               *diagnosticls-configs-supported*
 

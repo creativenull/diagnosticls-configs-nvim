@@ -6,7 +6,7 @@
 </a>
 
 An unofficial collection of linter and formatter configurations for [diagnostic-languageserver][dls] to work with
-builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.5.
+builtin [nvim-lsp][lsp]. Works only for Neovim >= 0.10.
 
 ## Supported linters and formatters
 
@@ -14,163 +14,118 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 
 ## Features
 
-+ Intelligently detect tools installed project-wide or system-wide - works only for node/npm, php/composer and
+- Intelligently detect tools installed project-wide or system-wide - works only for node/npm, php/composer and
   ruby/bundler, additional support for other build tools coming soon.
-+ Use `:checkhealth` to see any missing tools.
-+ Customize configs for your project needs.
+- Use `:checkhealth` to see any missing tools.
+- Customize configs for your project needs.
 
 ## Installation
+
 ### Requirements
 
-+ [Neovim v0.5 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
-+ [nvim-lspconfig][lspconfig] plugin
-+ [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
+- [diagnostic-languageserver][dls], globally installed: `npm i -g diagnostic-languageserver` or via mason.nvim plugin
+- [Neovim v0.10 and up][neovim] (Does not work work Vim as it does not have a built-in lsp client)
+- [nvim-lspconfig][lspconfig] plugin (only required if using nvim <= 0.10)
 
-You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin.
-
-#### Packer.nvim
+#### lazy.nvim
 
 ```lua
-use {
+{
     'creativenull/diagnosticls-configs-nvim',
-    tag = 'v0.1.8', -- `tag` is optional
-    requires = 'neovim/nvim-lspconfig',
+    version = 'v1.x.x',
+    dependencies = { 'neovim/nvim-lspconfig' } -- not required if using nvim >= 0.11
 }
 ```
 
-#### Vim-plug
+#### vim-plug
 
 ```vim
-Plug 'neovim/nvim-lspconfig'
-Plug 'creativenull/diagnosticls-configs-nvim', { 'tag': 'v0.1.8' } " tag is optional
+Plug 'neovim/nvim-lspconfig' " not required if using nvim >= 0.11
+Plug 'creativenull/diagnosticls-configs-nvim', { 'tag': 'v1.*' }
 ```
 
 ## Setup
 
-First you need to initialize the plugin, this is where you can pass your own LSP options:
+Use the `create()` to start adding the tools you want to run for the different filetypes. `dls_config` will create the
+necessary `init_options` for diagnostic-languageserver which you can then pass to `vim.lsp.config()` or to the lspconfig
+plugin.
 
 ```lua
--- Lua file
-local function on_attach(client)
-  print('Attached to ' .. client.name)
-end
+local eslint = require('diagnosticls-configs.linters.eslint')
+local prettier = require('diagnosticls-configs.formatters.prettier')
+local stylua = require('diagnosticls-configs.formatters.stylua')
+local dls_config = require('diagnosticls-configs').create({
+    javascript = {
+        linters = { eslint },
+        formatters = { prettier },
+    },
+    json = {
+        formatters = { prettier },
+    },
+    lua = {
+        formatters = { prettier },
+    }
+})
 
-local dlsconfig = require 'diagnosticls-configs'
+-- If using nvim >= 0.11 then use the following
+vim.lsp.config('diagnosticls', vim.tbl_extend('force', dls_config, {
+    cmd = { 'diagnostic-languageserver', '--stdio' },
+    root_markers = { '.git' }
 
-dlsconfig.init {
-  -- Your custom attach function
-  on_attach = on_attach,
-}
-```
+    -- Pass your custom lsp config below like on_attach and capabilities
+    --
+    -- on_attach = on_attach,
+    -- capabilities = capabilities,
+}))
 
-Finally, setup the linters/formatters according to the filetype, here is an example for running eslint and prettier
-for `javascript` and `javascriptreact` filetype:
-
-```lua
--- Lua file
-local eslint = require 'diagnosticls-configs.linters.eslint'
-local standard = require 'diagnosticls-configs.linters.standard'
-local prettier = require 'diagnosticls-configs.formatters.prettier'
-local prettier_standard = require 'diagnosticls-configs.formatters.prettier_standard'
-dlsconfig.setup {
-  ['javascript'] = {
-    linter = eslint,
-    formatter = prettier
-  },
-  ['javascriptreact'] = {
-    -- Add multiple linters
-    linter = { eslint, standard },
-    -- Add multiple formatters
-    formatter = { prettier, prettier_standard }
-  }
-}
+-- If using nvim <= 0.10 then use the following
+require('lspconfig').diagnosticls.setup(vim.tbl_extend('force', dls_config, {
+    -- Pass your custom lsp config below like on_attach and capabilities
+    --
+    -- on_attach = on_attach,
+    -- capabilities = capabilities,
+}))
 ```
 
 ## Default configuration
 
-A default configuration for the supported filetypes is provided but not activated by default.
+If you do not want to individually add each linter/formatter to each filetypes then you can use the `defaults()` function
+to use a list of default configurations.
 
-To activate the default configuration you can pass the `default_config` flag as true in the init function. Below are the
-default values for init:
+To use the default configuration without having to use `create()` use the following before calling `vim.lsp.config()` or
+`require('lspconfig').diagnosticls.setup()`:
 
 ```lua
--- Lua file
-dlsconfig.init {
-  -- Use a list of default configurations
-  -- set by this plugin
-  -- (Default: false)
-  default_config = false,
-
-  -- Set to false if formatting is not needed at all,
-  -- any formatter provided will be ignored
-  -- (Default: true)
-  format = true,
-}
-
-dlsconfig.setup()
+local dls_config = require('diagnosticls-configs').defaults()
 ```
-
-You will still need to call the `setup()` after `init()` for the changes to take effect. You can still pass your custom
-configurations to `setup()` as show in the [Setup section](#setup) and it will override any default configuration set
-by `default_config` if it's for the same filetype.
-
-NOTE: For `format` option it does not imply that it will "format on save". You still need to setup that in your lsp
-on_attach handler.
 
 ## Advanced Configuration
 
 If default configurations of a linter/formatter do not work for your use-case, or there are additional configuration
 that needs to be added which is not provided by default. Then you can extend the built-in configurations with your own
 modifications. The API is the same as [diagnostic-languageserver Initialization Options][dls-setup] on linter/formatter
-structure. You can use `vim.tbl_extend()` to extend these tables:
+structure. Here is an example if you want to change the arguments for the `eslint` linter:
 
 ```lua
--- Lua file
-local eslint = require 'diagnosticls-configs.linter.eslint'
-
--- ESLint Extented Config
-eslint = vim.tbl_extend('force', eslint, {
-
-  -- REQUIRED: if `default_config` is enabled, separate name from original sourceName
-  sourceName = 'eslint_extended',
-
-  args = { 'extra', 'args' },
-  rootPatterns = { '.git' }
-})
-
-dlsconfig.setup {
-  javascript = {
-    linter = eslint
-  }
-}
+local eslint = require('diagnosticls-configs.linters.eslint')
+eslint.command = '/another/path/to/eslint'
 ```
 
-NOTE: If you have [`default_config` enabled](#default-configuration), then `sourceName` needs to be a different name
-to the provided name, you can just add `_extended` or any other unique name to the extended configuration will work.
-This is because other defaults might use the same linter of the same `sourceName` and would default to use
-that instead of your own extended configuration.
-
-# TODO
-
-+ [X] Tests with busted/vusted or plenary - using plenary test_harness
-+ [X] Use `:checkhealth` to display status of linters/formatters registered with plugin
-+ [X] Add ability to override args, root patterns, etc
-+ [X] Add vim docs
-+ [X] Add contributing content
-+ [X] Add feature to allow multiple linters/formatters: [see ref](https://github.com/iamcco/diagnostic-languageserver#config--document)
+You can then pass this to `create()` or `defaults()` to use the modified configuration.
 
 ## Contributing
 
-First of all, thank you for your contribution 🙂!
+First of all, thank you for your interest in contributing!
 
 To help create configurations start with the [diagnostic-languageserver API][dls-setup] to know how the object is
 structured for a linter or a formatter. Also [check out the wiki][dls-wiki] to see some examples. Finally, check out the
-configurations created in the `lua/diagnosticls-configs/linters` and `lua/diagnosticls-configs/formatters` and see how
-they are implemented.
+configurations created in the `lua/diagnosticls-configs/linters` and/or in `lua/diagnosticls-configs/formatters` and see
+how they are implemented.
 
 Tools required for linting and formatting for this project (which are also supported by this plugin):
-+ [`luacheck`][luacheck] - Linting
-+ [`stylua`][stylua] - Formatting
+
+- [`luacheck`][luacheck] - Linting
+- [`stylua`][stylua] - Formatting
 
 For testing, add the relevant test logic in `tests/diagnosticls-configs` and then run:
 
@@ -182,8 +137,9 @@ make test
 
 Credits goes to the following repos for inspiration:
 
-+ [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) - for example configs in json format
-+ [ale](https://github.com/dense-analysis/ale) - for a vibrate list of supported linters/formatters to look through and implement
+- [Diagnostic Language Server](https://github.com/iamcco/diagnostic-languageserver) - for example configs in json format
+- [ale](https://github.com/dense-analysis/ale) - for a vibrate list of supported linters/formatters to look through and
+  implement
 
 [dls]: https://github.com/iamcco/diagnostic-languageserver
 [dls-setup]: https://github.com/iamcco/diagnostic-languageserver#config--document
