@@ -20,7 +20,7 @@ local diagnosticls_setup = {
   default_config = false,
 
   -- LSP Setup
-  root_dir = lspconfig.util.root_pattern('.git'),
+  root_dir = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true })[1]),
   filetypes = {},
   init_options = {
     filetypes = {},
