@@ -22,7 +22,7 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 ## Installation
 ### Requirements
 
-+ [Neovim v0.5 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
++ [Neovim v0.8 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
 + [nvim-lspconfig][lspconfig] plugin (only required if using nvim <= 0.10)
 + [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
 
