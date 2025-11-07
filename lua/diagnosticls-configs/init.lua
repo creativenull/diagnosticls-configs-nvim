@@ -1,7 +1,9 @@
 local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
-if not lspconfig_ok then
-  vim.api.nvim_err_writeln('[diagnosticls-configs] `nvim-lspconfig` plugin not installed!')
-  vim.api.nvim_err_writeln('Please install via your plugin manager.')
+
+if vim.fn.has('nvim-0.11') == 0 and not lspconfig_ok then
+  -- Only give this error if nvim < 0.11 and lspconfig plugin not installed
+  vim.api.nvim_err_writeln('[diagnosticls-configs] `nvim-lspconfig` plugin required! Install via your plugin manager.')
+
   return
 end
 
@@ -77,7 +79,12 @@ M.setup = function(filetypes)
 
   diagnosticls_setup.filetypes = vim.tbl_keys(filetypes)
 
-  lspconfig.diagnosticls.setup(diagnosticls_setup)
+  if vim.fn.has('nvim-0.11') == 1 then
+    vim.lsp.config('diagnosticls', diagnosticls_setup)
+    vim.lsp.enable('diagnosticls')
+  else
+    lspconfig.diagnosticls.setup(diagnosticls_setup)
+  end
 end
 
 return M
