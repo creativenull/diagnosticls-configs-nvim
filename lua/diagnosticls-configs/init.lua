@@ -79,6 +79,10 @@ M.setup = function(filetypes)
 
   diagnosticls_setup.filetypes = vim.tbl_keys(filetypes)
 
+  -- Remove plugin options before passing to lsp client
+  diagnosticls_setup.format = nil
+  diagnosticls_setup.default_config = nil
+
   if vim.fn.has('nvim-0.11') == 1 then
     vim.lsp.config('diagnosticls', diagnosticls_setup)
     vim.lsp.enable('diagnosticls')
