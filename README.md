@@ -22,8 +22,8 @@ Check out [supported-linters-and-formatters.md](supported-linters-and-formatters
 ## Installation
 ### Requirements
 
-+ [Neovim v0.5 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
-+ [nvim-lspconfig][lspconfig] plugin
++ [Neovim v0.8 and up][neovim] (Does not work work Vim as it does have a built-in lsp client)
++ [nvim-lspconfig][lspconfig] plugin (only required if using nvim <= 0.10)
 + [Diagnostic Language Server][dls], globally installed: `npm i -g diagnostic-languageserver`
 
 You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before using this plugin.
@@ -34,14 +34,14 @@ You will need to install `diagnostic-languageserver` and `nvim-lspconfig` before
 use {
     'creativenull/diagnosticls-configs-nvim',
     tag = 'v0.1.8', -- `tag` is optional
-    requires = 'neovim/nvim-lspconfig',
+    requires = 'neovim/nvim-lspconfig', -- Not a requirement if using nvim >= 0.11
 }
 ```
 
 #### Vim-plug
 
 ```vim
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig' " Not a requirement if using nvim >= 0.11
 Plug 'creativenull/diagnosticls-configs-nvim', { 'tag': 'v0.1.8' } " tag is optional
 ```
 
